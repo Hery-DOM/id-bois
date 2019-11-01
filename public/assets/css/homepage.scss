@@ -1,0 +1,25 @@
+.home-box{
+  width: 70%;
+  height: 60%;
+  background-color: rgba(0,0,0,0.8);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 0 30px 0 30px;
+}
+
+.home-text-box{
+  width: 80%;
+  height: 60%;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.home-description{
+  color: white;
+}

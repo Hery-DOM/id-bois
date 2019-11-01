@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -14,9 +15,13 @@ class HomeController extends AbstractController
      * homepage with description
      */
 
-    public function home()
+    public function home(ArticleRepository $articleRepository)
     {
-        return $this->render('home.html.twig');
+        $description = $articleRepository->findBy(['type'=>1]);
+
+        return $this->render('home.html.twig',[
+            'description' => $description
+        ]);
     }
 
 }
