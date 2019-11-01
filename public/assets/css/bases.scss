@@ -32,3 +32,53 @@
   position: relative;
 }
 
+.profile{
+  width: 80px;
+  height: 80px;
+  background-color: red;
+  border-radius: 80px;
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+}
+
+.profile:hover{
+  cursor: pointer;
+}
+
+.profile-content{
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  position: absolute;
+  top:0;
+  left: 100vw;
+}
+
+.profile-content-close{
+  float: right;
+  margin-right: 10%;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.cln{
+  clear: both;
+}
+
+.profile-content-close:hover{
+  color: red;
+  cursor: pointer;
+}
+
+.profile-img-box{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.profile-text-box{
+  margin-top: 15%;
+}

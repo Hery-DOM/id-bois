@@ -19,10 +19,12 @@ class HomeController extends AbstractController
     {
         $description = $articleRepository->findBy(['type'=>1]);
         $button = $articleRepository->findBy(['type'=>2]);
+        $profile = $articleRepository->findBy(['type'=>7]);
 
         return $this->render('home.html.twig',[
             'description' => $description,
-            'button' => $button
+            'button' => $button,
+            'profile' => $profile
         ]);
     }
 
