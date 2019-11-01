@@ -44,7 +44,8 @@ a {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 0 30px 0 30px; }
+  border-radius: 0 30px 0 30px;
+  text-align: center; }
 
 .home-text-box {
   width: 80%;
@@ -57,6 +58,17 @@ a {
   justify-content: space-around; }
 
 .home-description {
+  color: white; }
+
+.home-button {
+  padding: 20px;
+  border-radius: 20px;
+  border: 0;
+  background-color: white;
+  color: black; }
+
+.home-button:hover {
+  background-color: dimgrey;
   color: white; }
 
 /*# sourceMappingURL=styles.css.map */
