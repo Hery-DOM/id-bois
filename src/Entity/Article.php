@@ -48,6 +48,11 @@ class Article
      */
     private $type;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ProjectCategory", inversedBy="articles")
+     */
+    private $project_category;
+
     public function __construct()
     {
         $this->picture = new ArrayCollection();
@@ -145,6 +150,18 @@ class Article
     public function setType(?Type $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getProjectCategory(): ?ProjectCategory
+    {
+        return $this->project_category;
+    }
+
+    public function setProjectCategory(?ProjectCategory $project_category): self
+    {
+        $this->project_category = $project_category;
 
         return $this;
     }

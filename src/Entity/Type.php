@@ -28,6 +28,7 @@ class Type
      */
     private $articles;
 
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -80,4 +81,6 @@ class Type
 
         return $this;
     }
+
+
 }

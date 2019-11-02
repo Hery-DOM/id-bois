@@ -1,3 +1,6 @@
+body{
+  overflow-x: hidden;
+}
 
 .base-container-menu{
   height: 100vh;
@@ -52,7 +55,8 @@
   background-color: white;
   position: absolute;
   top:0;
-  left: 100vw;
+  left:100vw;
+  display: none;
 }
 
 .profile-content-close{

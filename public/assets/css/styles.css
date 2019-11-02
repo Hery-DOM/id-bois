@@ -10,6 +10,9 @@ a {
   text-decoration: none;
   color: black; }
 
+body {
+  overflow-x: hidden; }
+
 .base-container-menu {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.8);
@@ -54,7 +57,8 @@ a {
   background-color: white;
   position: absolute;
   top: 0;
-  left: 100vw; }
+  left: 100vw;
+  display: none; }
 
 .profile-content-close {
   float: right;

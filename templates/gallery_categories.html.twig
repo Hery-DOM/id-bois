@@ -1,0 +1,21 @@
+{% extends 'bases/bases.html.twig' %}
+
+{% block title %}
+    Galerie
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                {% for category in categories %}
+                    {% set column = 12/categories|length %}
+                    {% if column < 3 %}
+                        {% set column = 3 %}
+                    {% endif %}
+                    <div class="col-{{ column }}">{{ category.name }}</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
