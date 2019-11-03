@@ -10,6 +10,9 @@ a {
   text-decoration: none;
   color: black; }
 
+button {
+  border: 0; }
+
 body {
   overflow-x: hidden; }
 
@@ -117,5 +120,98 @@ body {
 .home-button:hover {
   background-color: dimgrey;
   color: white; }
+
+/** ALL CATEGORIES **/
+.gallery-container {
+  background-color: rgba(0, 0, 0, 0.8);
+  margin-top: 45px;
+  min-height: 90vh;
+  border-radius: 0 30px 0 30px;
+  padding-top: 20px;
+  position: relative; }
+
+.vertical-line {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  height: 65%;
+  width: 2px;
+  background-color: white; }
+
+.gallery-h1 {
+  text-align: center;
+  color: white;
+  font-size: 3em; }
+
+.gallery-p {
+  color: white;
+  font-size: 1.5em;
+  margin-left: 20px;
+  margin-top: 50px; }
+
+.galler-row {
+  margin-top: 100px; }
+
+.gallery-category-column {
+  height: 100%; }
+  .gallery-category-column a:hover {
+    text-decoration: none; }
+    .gallery-category-column a:hover .gallery-category-box {
+      color: white;
+      background-color: dimgrey; }
+
+.gallery-category-box {
+  height: 80px;
+  width: 75%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 20px;
+  text-transform: capitalize;
+  background-color: white; }
+
+/** ONE CATEGORY **/
+.gallery-category-select {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 1.6em; }
+
+.gallery-project-column {
+  margin-bottom: 50px; }
+
+.gallery-project-box {
+  width: 80%;
+  height: 115%;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  overflow: hidden;
+  position: relative; }
+  .gallery-project-box .gallery-project-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: white;
+    display: none; }
+  .gallery-project-box img {
+    transform: scale(1.5); }
+
+.gallery-project-box:hover {
+  transition: all linear 0.2s;
+  transform: scale(1.2);
+  cursor: pointer; }
+  .gallery-project-box:hover .gallery-project-text {
+    display: block; }
+  .gallery-project-box:hover img {
+    opacity: 0.7; }
 
 /*# sourceMappingURL=styles.css.map */

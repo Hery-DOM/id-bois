@@ -1,0 +1,48 @@
+{% extends 'bases/bases.html.twig' %}
+
+{% block title %}
+    Galerie
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container gallery-container">
+            <h1 class="gallery-h1">Galerie</h1>
+            <div class="vertical-line"></div>
+            <div class="row flex-wrap gallery-category-select">
+                {% set column = 12/(categories|length + 1) %}
+                {% for category in categories %}
+                    {% if column < 3 %}
+                        {% set column = 3 %}
+                    {% endif %}
+                    <div class="col-{{ column }} gallery-category-column">
+                        <a href="{{ path('gallery_category',{'id':category.id}) }}">
+                            <button class="gallery-category-box">{{ category.name }}</button>
+                        </a>
+                    </div>
+                {% endfor %}
+                <div class="col-{{ column }} gallery-category-column">
+                    <a href="#">
+                        <button class="gallery-category-box">Toutes les catégories</button>
+                    </a>
+                </div>
+            </div>
+            <div class="row flex-wrap text-center">
+                {% for project in projects %}
+                    <div class="col-3 gallery-project-column">
+                        <a href="#">
+                            <div class="container gallery-project-box">
+                                <div class="gallery-project-text">
+                                    <h2>{{ project.title }}</h2>
+                                </div>
+                                <img class="img-fluid" src="https://www.made-in-meubles.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/n/2/n240-bois-4-meuble-cuisine-bois-massif-face.jpg" alt="">
+                            </div>
+                        </a>
+
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
