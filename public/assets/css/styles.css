@@ -290,7 +290,8 @@ body {
   padding-right: 30px;
   margin-right: 30px;
   font-size: 2em;
-  color: white; }
+  color: white;
+  cursor: pointer; }
 
 .contact-input {
   width: 60%;

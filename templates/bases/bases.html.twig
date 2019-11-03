@@ -24,7 +24,8 @@
                         <nav class="base-menu">
                             <ul class="d-flex flex-column justify-content-around align-items-center">
                                 <li><a href="{{ path('home') }}" class="{{ app.request.get('_route') == 'home' ?'active' }}">Accueil</a></li>
-                                <li><a href="{{ path('gallery_home') }}" class="{{ app.request.get('_route') == 'gallery_home' ?'active' }}">Galerie</a></li>
+                                <li><a href="{{ path('gallery_home') }}" class="{{ 'gallery' in app.request.get
+                                        ('_route') ?'active' }}">Galerie</a></li>
                                 <li><a href="{{ path('ecolo') }}" class="{{ app.request.get('_route') == 'ecolo'
                                     ?'active' }}">Écolo</a></li>
                                 <li><a href="{{ path('contact') }}" class="{{ app.request.get('_route') == 'contact'
