@@ -18,52 +18,70 @@
 </head>
 <body>
     <main class="container-fluid base-main">
-            <div class="row">
-                <div class="col-2 base-container-menu">
-                    <div class="base-menu-box">
-                        <nav class="base-menu">
-                            <ul class="d-flex flex-column justify-content-around align-items-center">
-                                <li><a href="{{ path('home') }}" class="{{ app.request.get('_route') == 'home' ?'active' }}">Accueil</a></li>
-                                <li><a href="{{ path('gallery_home') }}" class="{{ 'gallery' in app.request.get
-                                        ('_route') ?'active' }}">Galerie</a></li>
-                                <li><a href="{{ path('ecolo') }}" class="{{ app.request.get('_route') == 'ecolo'
-                                    ?'active' }}">Écolo</a></li>
-                                <li><a href="{{ path('contact') }}" class="{{ app.request.get('_route') == 'contact'
-                                    ?'active' }}">Contact</a></li>
-                                <li><a href="{{ path('legal') }}" class="{{ app.request.get('_route') == 'legal'
-                                    ?'active-legal' }}">Mentions légales</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <div class="col-10 base-content">
-                    {% block content %}
-                    {% endblock %}
-                </div>
-                <div class="profile">
-
-                </div>
-                <div class="profile-content container-fluid">
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="img-fluid profile-img-box">
-                                <img src="{{ asset('assets/img/logo.png') }}" alt="Iandy DOMENICHINI photo de profil">
-                            </div>
-
-                        </div>
-                        <div class="col-7">
-                            <span class="profile-content-close">X</span>
-                            <div class="cln"></div>
-                            <div class="profile-text-box">
-                                <h2>{{ profile[0].title }}</h2>
-                                <p>{{ profile[0].description }}</p>
-                            </div>
-
-                        </div>
-                    </div>
-
+        <div class="d-block d-lg-none base-burger-box" onclick="showHiddenMenu();">
+            <img class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1200px-Hamburger_icon.svg.png" alt="">
+        </div>
+        <div class="col-12 base-hidden-menu">
+            <h1 class="base-hidden-h1">ID BOIS</h1>
+            <span class="base-hidden-close" onclick="closeHiddenMenu()">X</span>
+            <div class="cln"></div>
+            <nav>
+                <ul>
+                    <li><a href="{{ path('home') }}">Accueil</a></li>
+                    <li><a href="{{ path('gallery_home') }}">Galerie</a></li>
+                    <li><a href="{{ path('ecolo') }}">Écolo</a></li>
+                    <li><a href="{{ path('contact') }}">Contact</a></li>
+                    <li><a href="{{ path('legal') }}">Mentions légales</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row home-row">
+            <div class="d-none d-lg-block col-lg-2 base-container-menu">
+                <div class="base-menu-box">
+                    <nav class="base-menu">
+                        <ul class="d-flex flex-column justify-content-around align-items-center">
+                            <li><a href="{{ path('home') }}" class="{{ app.request.get('_route') == 'home' ?'active' }}">Accueil</a></li>
+                            <li><a href="{{ path('gallery_home') }}" class="{{ 'gallery' in app.request.get
+                                    ('_route') ?'active' }}">Galerie</a></li>
+                            <li><a href="{{ path('ecolo') }}" class="{{ app.request.get('_route') == 'ecolo'
+                                ?'active' }}">Écolo</a></li>
+                            <li><a href="{{ path('contact') }}" class="{{ app.request.get('_route') == 'contact'
+                                ?'active' }}">Contact</a></li>
+                            <li><a href="{{ path('legal') }}" class="{{ app.request.get('_route') == 'legal'
+                                ?'active-legal' }}">Mentions légales</a></li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
+            <div class="col-12 col-lg-10 base-content">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="profile">
+
+            </div>
+            <div class="profile-content container-fluid">
+                <div class="row">
+                    <div class="col-5">
+                        <div class=" profile-img-box">
+                            <img class="img-fluid" src="{{ asset('assets/img/logo.png') }}" alt="Iandy DOMENICHINI photo
+                             de profil">
+                        </div>
+
+                    </div>
+                    <div class="col-7">
+                        <span class="profile-content-close">X</span>
+                        <div class="cln"></div>
+                        <div class="profile-text-box">
+                            <h2>{{ profile[0].title }}</h2>
+                            <p>{{ profile[0].description }}</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </main>
 
 

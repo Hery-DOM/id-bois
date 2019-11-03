@@ -1,3 +1,7 @@
+.home-row{
+  height: 100vh;
+}
+
 .home-box{
   width: 70%;
   height: 60%;
@@ -26,14 +30,18 @@
 }
 
 .home-button{
+  margin-top:20px;
   padding: 20px;
   border-radius: 20px;
   border: 0;
   background-color: white;
   color: black;
+  width: 50%;
+  height: 20%;
 }
 
 .home-button:hover{
   background-color: dimgrey;
   color: white;
 }
+

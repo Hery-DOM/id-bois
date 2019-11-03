@@ -27,3 +27,12 @@ function modalShow(id){
     });
 }
 
+//show hidden menu
+function showHiddenMenu(){
+    $('.base-hidden-menu').css('left',0);
+}
+
+//close hidden menu
+function closeHiddenMenu(){
+    $('.base-hidden-menu').css('left','-100vw');
+}
