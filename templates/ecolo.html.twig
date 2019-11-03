@@ -1,0 +1,38 @@
+{% extends 'bases/bases.html.twig' %}
+
+{% block title %}
+    Écolo
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container ecolo-container">
+            <h1 class="ecolo-h1">Écolo</h1>
+            <div class="vertical-line"></div>
+            <p class="ecolo-description">{{ description[0].description }}</p>
+            {% set count = 0%}
+            {% for article in articles %}
+                <div class="row ecolo-row">
+                    {% if count%2 == 0 %}
+                        <div class="col-6 ecolo-text-right">{{ article.description }}</div>
+                        <div class="col-6 text-center">
+                            <div class="ecolo-img-box">
+                                <img class="img-fluid" src="http://www.valeur-bois.com/images/actualite/104/liste/Panneaux_bois_290x193.jpg" alt="">
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-6 text-center">
+                            <div class="ecolo-img-box">
+                                <img class="img-fluid" src="http://www.valeur-bois.com/images/actualite/104/liste/Panneaux_bois_290x193.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-6 ecolo-text-left">{{ article.description }}</div>
+                    {% endif %}
+                </div>
+                {% set count = count +1 %}
+            {% endfor %}
+
+
+        </div>
+    </div>
+{% endblock %}

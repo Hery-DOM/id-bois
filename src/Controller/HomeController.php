@@ -84,4 +84,24 @@ class HomeController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/ecolo",name="ecolo")
+     * ecolo page
+     */
+    public function ecolo(ArticleRepository $articleRepository)
+    {
+        $profile = $articleRepository->findBy(['type'=>7]);
+        //get ecolo's description
+        $description = $articleRepository->findBy(['type' => 5]);
+
+        //get ecolo's articles
+        $articles = $articleRepository->findBy(['type' => 6]);
+
+        return $this->render('ecolo.html.twig',[
+            'profile' => $profile,
+            'description' => $description,
+            'articles' => $articles
+        ]);
+    }
+
 }

@@ -122,7 +122,7 @@ body {
   color: white; }
 
 /** ALL CATEGORIES **/
-.gallery-container {
+.gallery-container, .ecolo-container {
   background-color: rgba(0, 0, 0, 0.8);
   margin-top: 45px;
   min-height: 90vh;
@@ -138,7 +138,7 @@ body {
   width: 2px;
   background-color: white; }
 
-.gallery-h1 {
+.gallery-h1, .ecolo-h1 {
   text-align: center;
   color: white;
   font-size: 3em; }
@@ -244,5 +244,23 @@ body {
   color: white;
   display: block;
   text-align: center; }
+
+.ecolo-description {
+  text-align: center;
+  color: white;
+  font-size: 1.2em;
+  margin: 40px; }
+
+.ecolo-row {
+  margin-bottom: 50px;
+  color: white; }
+
+.ecolo-text-right {
+  text-align: right;
+  padding: 50px 80px 20px 0px; }
+
+.ecolo-text-left {
+  text-align: left;
+  padding: 50px 0px 20px 80px; }
 
 /*# sourceMappingURL=styles.css.map */
