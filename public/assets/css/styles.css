@@ -42,6 +42,14 @@ body {
     .base-menu ul li a {
       color: white;
       font-size: 1.3em; }
+    .base-menu ul li .active, .base-menu ul li .active-legal {
+      border: 2px solid white;
+      border-radius: 0 10px 0 10px;
+      padding: 10px;
+      text-decoration: none;
+      cursor: default; }
+    .base-menu ul li .active-legal {
+      font-size: 1em; }
 
 .base-content {
   background-image: url("../img/logo-background-2.png");
@@ -130,7 +138,7 @@ body {
   color: white; }
 
 /** ALL CATEGORIES **/
-.gallery-container, .ecolo-container, .contact-container {
+.gallery-container, .ecolo-container, .contact-container, .legal-container {
   background-color: rgba(0, 0, 0, 0.8);
   margin-top: 45px;
   min-height: 90vh;
@@ -317,5 +325,11 @@ body {
 .contact-confirm p {
   font-size: 1.4em;
   color: white; }
+
+.legal-container {
+  color: white;
+  padding-bottom: 20px; }
+  .legal-container h2 {
+    margin-top: 40px; }
 
 /*# sourceMappingURL=styles.css.map */

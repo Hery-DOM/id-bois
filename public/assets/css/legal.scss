@@ -1,0 +1,9 @@
+.legal-container{
+  @extend .gallery-container;
+  color: white;
+  padding-bottom: 20px;
+
+  h2{
+    margin-top: 40px;
+  }
+}

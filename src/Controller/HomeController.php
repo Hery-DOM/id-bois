@@ -147,4 +147,17 @@ class HomeController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/mentions-legales", name="legal")
+     * legal notice page
+     */
+    public function legal(ArticleRepository $articleRepository)
+    {
+        $profile = $articleRepository->findBy(['type'=>7]);
+
+        return $this->render('legal.html.twig',[
+            'profile' => $profile
+        ]);
+    }
+
 }

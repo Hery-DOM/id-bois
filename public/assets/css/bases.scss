@@ -33,6 +33,19 @@ body{
       color: white;
       font-size: 1.3em;
     }
+
+    li .active{
+      border: 2px solid white;
+      border-radius: 0 10px 0 10px;
+      padding: 10px;
+      text-decoration: none;
+      cursor: default;
+    }
+
+    li .active-legal{
+      @extend .active;
+      font-size: 1em;
+    }
   }
 }
 
