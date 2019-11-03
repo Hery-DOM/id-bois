@@ -10,3 +10,20 @@ $(document).ready(function(){
         });
     });
 });
+
+//close modal with carousel
+function modalClose(){
+    $('.project-carousel-close').click(function(){
+        $('.gallery-category-modal-hidden').hide();
+    });
+}
+
+
+//carousel for a project
+function modalShow(id){
+    $('.gallery-category-modal-hidden').css('display','block')
+        $('.gallery-category-modal-hidden').load('../project/'+id,function(){
+            modalClose();
+    });
+}
+

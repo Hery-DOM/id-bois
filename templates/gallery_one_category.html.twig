@@ -22,27 +22,26 @@
                     </div>
                 {% endfor %}
                 <div class="col-{{ column }} gallery-category-column">
-                    <a href="#">
+                    <a href="{{ path('gallery_category',{'id':'all'}) }}">
                         <button class="gallery-category-box">Toutes les catégories</button>
                     </a>
                 </div>
             </div>
             <div class="row flex-wrap text-center">
                 {% for project in projects %}
-                    <div class="col-3 gallery-project-column">
-                        <a href="#">
+                    <div onclick="modalShow({{ project.id }});" class="col-3 gallery-project-column">
                             <div class="container gallery-project-box">
                                 <div class="gallery-project-text">
                                     <h2>{{ project.title }}</h2>
                                 </div>
                                 <img class="img-fluid" src="https://www.made-in-meubles.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/n/2/n240-bois-4-meuble-cuisine-bois-massif-face.jpg" alt="">
                             </div>
-                        </a>
 
                     </div>
                 {% endfor %}
 
             </div>
         </div>
+        <div class="gallery-category-modal-hidden"></div>
     </div>
 {% endblock %}

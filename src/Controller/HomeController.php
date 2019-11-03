@@ -57,12 +57,30 @@ class HomeController extends AbstractController
         //get category's ID
         $id = $request->query->get('id');
         //get projects
-        $projects = $articleRepository->findBy(['project_category' => $id]);
+        if($id != 'all'){
+            $projects = $articleRepository->findBy(['project_category' => $id]);
+        }else{
+            $projects = $articleRepository->findBy(['type'=>3]);
+        }
 
         return $this->render('gallery_one_category.html.twig',[
             'profile' => $profile,
             'categories' => $categories,
             'projects' => $projects
+        ]);
+    }
+
+    /**
+     * @Route("/project/{id}", name="project")
+     * show pictures from a project, by ajax (carousel)
+     */
+    public function project(ArticleRepository $articleRepository,$id)
+    {
+        //get project
+        $project = $articleRepository->find($id);
+
+        return $this->render('project.html.twig',[
+            'project' => $project
         ]);
     }
 
