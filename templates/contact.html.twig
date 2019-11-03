@@ -1,0 +1,68 @@
+{% extends 'bases/bases.html.twig' %}
+
+{% block title %}
+    Contact
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <section class="container contact-container">
+            <h1 class="contact-h1">Contact</h1>
+            {% for message in app.flashes('confirm') %}
+                <div class="contact-confirm">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+            <div class="contact-vertical-line"></div>
+            <form action="#" method="POST">
+                <div class="form-group row align-items-center">
+                    <div class="col-6 contact-label-box text-right">
+                        <label class="contact-label" for="name">Nom</label>
+                    </div>
+                    <div class="col-6 contact-input-box">
+                        <input type="text" name="name" placeholder="Votre nom" id="name" class="form-control
+                        contact-input">
+                    </div>
+                </div>
+                <div class="form-group row align-items-center">
+                    <div class="col-6 contact-label-box text-right">
+                        <label class="contact-label" for="firstname">Prénom</label>
+                    </div>
+                    <div class="col-6 contact-input-box">
+                        <input type="text" name="firstname" placeholder="Votre Prénom" id="firstname"
+                               class="form-control
+                        contact-input">
+                    </div>
+                </div>
+                <div class="form-group row align-items-center">
+                    <div class="col-6 contact-label-box text-right">
+                        <label class="contact-label" for="phone">Numéro de téléphone</label>
+                    </div>
+                    <div class="col-6 contact-input-box">
+                        <input type="text" name="phone" placeholder="Votre numéro de téléphone" id="phone"
+                               class="form-control
+                        contact-input">
+                    </div>
+                </div>
+                <div class="form-group row align-items-center">
+                    <div class="col-6 contact-label-box text-right">
+                        <label class="contact-label" for="firstprojectname">Votre projet</label>
+                    </div>
+                    <div class="col-6 contact-input-box">
+                        <textarea class="contact-input" name="project" id="project" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="contact-submit-box">
+                    <input type="submit" class="contact-submit" value="Envoyer" name="submit">
+                </div>
+            </form>
+        <div class="container">
+            <div class="contact-informations">
+                <h2>Mes coordonnées</h2>
+                <p>Téléphone : 06 06 06 06 06</p>
+                <p>Courriel : id-bois@hotmail.fr</p>
+            </div>
+        </div>
+        </section>
+    </div>
+{% endblock %}

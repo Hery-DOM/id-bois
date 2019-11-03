@@ -17,9 +17,17 @@ body {
   overflow-x: hidden; }
 
 .base-container-menu {
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
+  min-height: 100vh;
+  height: 100%;
   position: relative; }
+
+.base-menu-box {
+  height: 100vh;
+  width: 210px;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0; }
 
 .base-menu {
   width: 80%;
@@ -122,7 +130,7 @@ body {
   color: white; }
 
 /** ALL CATEGORIES **/
-.gallery-container, .ecolo-container {
+.gallery-container, .ecolo-container, .contact-container {
   background-color: rgba(0, 0, 0, 0.8);
   margin-top: 45px;
   min-height: 90vh;
@@ -130,7 +138,7 @@ body {
   padding-top: 20px;
   position: relative; }
 
-.vertical-line {
+.vertical-line, .contact-vertical-line {
   position: absolute;
   top: 30%;
   left: 50%;
@@ -138,7 +146,7 @@ body {
   width: 2px;
   background-color: white; }
 
-.gallery-h1, .ecolo-h1 {
+.gallery-h1, .ecolo-h1, .contact-h1 {
   text-align: center;
   color: white;
   font-size: 3em; }
@@ -262,5 +270,52 @@ body {
 .ecolo-text-left {
   text-align: left;
   padding: 50px 0px 20px 80px; }
+
+.contact-vertical-line {
+  top: 10%;
+  height: 50%; }
+
+.contact-container {
+  padding-bottom: 20px; }
+
+.contact-label {
+  padding-right: 30px;
+  margin-right: 30px;
+  font-size: 2em;
+  color: white; }
+
+.contact-input {
+  width: 60%;
+  border-radius: 30px;
+  padding-left: 30px;
+  margin-left: 30px; }
+
+.contact-submit-box {
+  text-align: center;
+  width: 100%; }
+
+.contact-submit {
+  width: 20%;
+  height: 60px;
+  border-radius: 20px;
+  margin: 0 auto;
+  color: black;
+  background-color: white;
+  border: none;
+  font-size: 2em; }
+
+.contact-submit:hover {
+  color: white;
+  background-color: dimgrey; }
+
+.contact-informations {
+  text-align: center;
+  font-size: 1.8em;
+  color: white;
+  margin: 40px; }
+
+.contact-confirm p {
+  font-size: 1.4em;
+  color: white; }
 
 /*# sourceMappingURL=styles.css.map */

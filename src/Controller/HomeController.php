@@ -104,4 +104,47 @@ class HomeController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/contact", name="contact")
+     * contact page
+     */
+    public function contact(ArticleRepository $articleRepository, Request $request)
+    {
+        $profile = $articleRepository->findBy(['type' => 7]);
+
+        //if form is send
+        if($request->isMethod('POST')){
+            //si le formulaire est soumis, on renseigne le mail et on l'envoie via la fonction PHP mail()
+            $name = htmlspecialchars($_POST['name']);
+            $firstname = htmlspecialchars($_POST['firstname']);
+            $phone = htmlspecialchars($_POST['phone']);
+            $project = htmlspecialchars($_POST['project']);
+            $to = 'id-bois@hotmail.fr';
+            $subject = 'Message du site web';
+            $message = wordwrap($project, 70,"\r\n");
+            $headers = 'Du formulaire du site id-bois.fr' . "\r\n" .
+                'Message de '.$firstname.' '.$name . "\r\n".
+                'Téléphone : '.$phone. "\r\n";
+
+            $mail = mail($to, $subject, $message, $headers);
+
+
+            if($mail){
+                $this->addFlash('confirm', 'Votre message a bien été envoyé');
+                return $this->render('contact.html.twig',[
+                    'profile' => $profile
+                ]);
+            }else{
+                $this->addFlash('confirm', 'Il y a eu une erreur lors de l\'envoi de votre message, merci de réessayer');
+                return $this->render('contact.html.twig',[
+                    'profile' => $profile
+                ]);
+            }
+        }
+
+        return $this->render('contact.html.twig',[
+            'profile' => $profile
+        ]);
+    }
+
 }
