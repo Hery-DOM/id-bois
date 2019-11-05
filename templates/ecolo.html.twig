@@ -8,25 +8,25 @@
     <div class="container-fluid">
         <div class="container ecolo-container">
             <h1 class="ecolo-h1">Écolo</h1>
-            <div class="vertical-line"></div>
+            <div class="vertical-line vertical-line-ecolo"></div>
             <p class="ecolo-description">{{ description[0].description }}</p>
             {% set count = 0%}
             {% for article in articles %}
                 <div class="row ecolo-row">
                     {% if count%2 == 0 %}
-                        <div class="col-6 ecolo-text-right">{{ article.description }}</div>
-                        <div class="col-6 text-center">
+                        <div class="col-12 col-md-6 ecolo-text-right order-2 order-md-1">{{ article.description }}</div>
+                        <div class="col-12 col-md-6 text-center order-1 order-md-2">
                             <div class="ecolo-img-box">
                                 <img class="img-fluid" src="http://www.valeur-bois.com/images/actualite/104/liste/Panneaux_bois_290x193.jpg" alt="">
                             </div>
                         </div>
                     {% else %}
-                        <div class="col-6 text-center">
+                        <div class="col-12 col-md-6 text-center order-1 order-md-1">
                             <div class="ecolo-img-box">
                                 <img class="img-fluid" src="http://www.valeur-bois.com/images/actualite/104/liste/Panneaux_bois_290x193.jpg" alt="">
                             </div>
                         </div>
-                        <div class="col-6 ecolo-text-left">{{ article.description }}</div>
+                        <div class="col-12 col-md-6 ecolo-text-left order-2 order-md-2">{{ article.description }}</div>
                     {% endif %}
                 </div>
                 {% set count = count +1 %}
