@@ -10,13 +10,13 @@
                 <h1 class="gallery-h1">Galerie</h1>
                 <div class="vertical-line"></div>
                 <p class="gallery-p">Pour commencer, choisissez une catégorie : </p>
-            <div class="row galler-row">
+            <div class="row gallery-row">
                 {% for category in categories %}
                     {% set column = 12/categories|length %}
                     {% if column < 3 %}
                         {% set column = 3 %}
                     {% endif %}
-                    <div class="col-{{ column }} gallery-category-column">
+                    <div class="col-12 my-3 col-md-{{ column }} gallery-category-column">
                         <a href="{{ path('gallery_category',{'id':category.id}) }}">
                             <div class="gallery-category-box">
                                 <h2>{{ category.name }}</h2>

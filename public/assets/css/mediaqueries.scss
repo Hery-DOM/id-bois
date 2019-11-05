@@ -14,3 +14,70 @@
 
 
 /***** END - HOME PAGE *****/
+
+/***** GALLERY PAGE *****/
+@media screen and(min-width:500px) and(max-width: 768px){
+  .gallery-category-box h2{
+    font-size: 1.4em;
+  }
+
+  .gallery-row{
+    margin-top: 20px;
+  }
+
+  .vertical-line{
+    top: 35%;
+  }
+
+  .gallery-category-box{
+    margin-top: 20px;
+    font-size: 1.2em;
+  }
+
+  .gallery-project-box{
+    width: 40%;
+  }
+
+  .project-control{
+    background-color: black;
+  }
+
+}
+
+@media screen and(max-width: 500px){
+  .vertical-line{
+    height: 55%;
+    top: 45%;
+  }
+
+  .gallery-category-box h2{
+    font-size: 1.4em;
+  }
+
+  .gallery-row{
+    margin-top: 20px;
+  }
+
+  .profile{
+    width: 40px;
+    height: 40px;
+  }
+
+  .gallery-category-box{
+    margin-top: 20px;
+    font-size: 0.8em;
+  }
+
+  .gallery-project-box{
+    width: 40%;
+  }
+
+  .project-control{
+    background-color: black;
+  }
+}
+
+
+
+
+/***** END - GALLERY PAGE *****/
