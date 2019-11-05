@@ -20,7 +20,7 @@
                         <label class="contact-label" for="name">Nom</label>
                     </div>
                     <div class="col-12 col-md-6 contact-input-box">
-                        <input type="text" name="name" placeholder="Votre nom" id="name" class="form-control
+                        <input required type="text" name="name" placeholder="Votre nom" id="name" class="form-control
                         contact-input">
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                         <label class="contact-label" for="firstname">Prénom</label>
                     </div>
                     <div class="col-12 col-md-6 contact-input-box">
-                        <input type="text" name="firstname" placeholder="Votre Prénom" id="firstname"
+                        <input required type="text" name="firstname" placeholder="Votre Prénom" id="firstname"
                                class="form-control
                         contact-input">
                     </div>
@@ -39,17 +39,18 @@
                         <label class="contact-label" for="phone">Numéro de téléphone</label>
                     </div>
                     <div class="col-12 col-md-6 contact-input-box">
-                        <input type="text" name="phone" placeholder="Votre numéro" id="phone"
+                        <input required type="text" name="phone" placeholder="Votre numéro" id="phone"
                                class="form-control
                         contact-input">
                     </div>
                 </div>
                 <div class="form-group row align-items-center">
                     <div class="col-12 col-md-6 contact-label-box text-center text-md-right">
-                        <label class="contact-label" for="firstprojectname">Votre projet</label>
+                        <label required class="contact-label" for="firstprojectname">Votre projet</label>
                     </div>
                     <div class="col-12 col-md-6 contact-input-box">
-                        <textarea class="contact-input" name="project" id="project" cols="30" rows="10"></textarea>
+                        <textarea required class="contact-input" name="project" id="project" cols="30"
+                                  rows="10"></textarea>
                     </div>
                 </div>
                 <div class="contact-submit-box">

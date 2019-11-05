@@ -114,11 +114,22 @@ class HomeController extends AbstractController
 
         //if form is send
         if($request->isMethod('POST')){
-            //si le formulaire est soumis, on renseigne le mail et on l'envoie via la fonction PHP mail()
+
+            //check security
             $name = htmlspecialchars($_POST['name']);
             $firstname = htmlspecialchars($_POST['firstname']);
             $phone = htmlspecialchars($_POST['phone']);
             $project = htmlspecialchars($_POST['project']);
+
+            //check if inputs are empty
+            if(empty($name) || empty($firstname) || empty($phone) || empty($project)){
+                $this->addFlash('confirm', 'Merci de remplir tous les champs');
+                return $this->render('contact.html.twig',[
+                    'profile' => $profile
+                ]);
+            }
+
+
             $to = 'id-bois@hotmail.fr';
             $subject = 'Message du site web';
             $message = wordwrap($project, 70,"\r\n");
