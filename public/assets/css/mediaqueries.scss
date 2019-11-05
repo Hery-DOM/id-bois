@@ -100,7 +100,41 @@
   }
 }
 
-
-
-
 /***** END - ECOLO PAGE *****/
+
+
+/***** CONTACT PAGE *****/
+@media screen and(max-width: 768px){
+  .contact-label{
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .vertical-line{
+    display: none;
+  }
+
+  .contact-input-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .contact-input{
+    margin:0;
+  }
+
+  .contact-informations{
+    font-size: 1.0em;
+  }
+
+  .contact-submit{
+    font-size: 1.4em;
+    width: 50%;
+  }
+
+}
+
+
+/***** END - CONTACT PAGE *****/
