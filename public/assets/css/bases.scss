@@ -34,6 +34,18 @@ body{
       font-size: 1.3em;
     }
 
+    li a:hover{
+      border: 1px solid white;
+      background-color: white;
+      color: rgba(0,0,0,0.8);
+      border-radius: 0 10px 0 10px;
+      padding: 5px;
+    }
+
+    .bases-legal{
+      font-size: 0.8em;
+    }
+
     li .active{
       border: 2px solid white;
       border-radius: 0 10px 0 10px;
@@ -44,7 +56,7 @@ body{
 
     li .active-legal{
       @extend .active;
-      font-size: 1em;
+      font-size: 1.3em;
     }
   }
 }
