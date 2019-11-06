@@ -179,3 +179,23 @@ body{
 .base-hidden-close:focus {
   color: red;
 }
+
+
+/**************** ADMIN ****************/
+.admin-h1{
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.admin-base-container-menu{
+  padding: 0;
+
+  .base-menu-box{
+    width: 200px;
+  }
+}
+
+
+
+
+/**************** FIN - ADMIN ****************/

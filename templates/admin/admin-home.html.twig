@@ -1,0 +1,36 @@
+{% extends 'bases/bases-admin.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container d-flex justify-content-around flex-column admin-container">
+            {{ form_start(formDescription) }}
+                <div class="row align-items-center">
+                    <div class="col-3">
+                        {{ form_label(formDescription.description,"Description",{'label_attr':{'class':'admin-label'}}) }}
+                    </div>
+                    <div class="col-7">
+                        {{ form_widget(formDescription.description, {'attr':{'class':'admin-input'}}) }}
+                    </div>
+                    <div class="col-2">
+                        <input type="submit" class="btn btn-success" name="description" value="Enregistrer">
+                    </div>
+                </div>
+            {{ form_end(formDescription) }}
+
+            {{ form_start(formCall) }}
+            <div class="row align-items-center">
+                <div class="col-3">
+                    {{ form_label(formCall.description,'Call-to-action',{'label_attr':{'class':'admin-label'}}) }}
+                </div>
+                <div class="col-7">
+                    {{ form_widget(formCall.description, {'attr':{'class':'admin-input'}}) }}
+                </div>
+                <div class="col-2">
+                    <input type="submit" class="btn btn-success" name="call" value="Enregistrer">
+                </div>
+            </div>
+            {{ form_end(formCall) }}
+        </div>
+    </div>
+
+{% endblock %}
