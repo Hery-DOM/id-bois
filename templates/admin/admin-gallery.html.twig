@@ -9,7 +9,7 @@
                         <h2>{{ project.title }}</h2>
                     </div>
                     <div class="col-2 admin-gallery-action">
-                        <a href="#">Voir</a>
+                        <a href="{{ path('admin_gallery_single_project',{'id':project.id}) }}">Voir</a>
                     </div>
                     <div class="col-2 admin-gallery-action">
                         <a href="#">Modifier</a>

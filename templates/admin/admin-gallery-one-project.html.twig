@@ -1,0 +1,19 @@
+{% extends 'bases/bases-admin.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container d-flex justify-content-around align-items-start flex-column
+        admin-gallery-single-container admin-container">
+            <a href="{{ path('admin_gallery') }}" class="back">Retour</a>
+            <h1>Titre : {{ project.title }}</h1>
+            <p>Description : {{ project.description }}</p>
+            <div class="row align-items-center">
+                <p class="col-2">Image principale : </p>
+                <div class="admin-gallery-single-img-box col-3">
+                    <img class="img-fluid" src="https://www.made-in-meubles.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/n/2/n240-bois-4-meuble-cuisine-bois-massif-face.jpg" alt="">
+                </div>
+                <div class="col-7"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

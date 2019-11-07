@@ -72,5 +72,19 @@ class AdminController extends AbstractController
          ]);
     }
 
+    /**
+     * @Route("/admin/gallery/project",name="admin_gallery_single_project")
+     * admin gallery page = show one project
+     */
+    public function adminGalleryOneProject(Request $request, ArticleRepository $articleRepository)
+    {
+        $id = $request->query->get('id');
+        $project = $articleRepository->find($id);
+
+        return $this->render('admin/admin-gallery-one-project.html.twig',[
+            'project' => $project
+        ]);
+    }
+
 
 }
