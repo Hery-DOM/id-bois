@@ -32,6 +32,16 @@
 
                 <div class="row align-items-center admin-gallery-update-section">
                     <div class="col-2">
+                        {{ form_label(form.project_category,"Catégorie",{'label_attr':{'class':'admin-label'}}) }}
+                    </div>
+                    <div class="col-8">
+                        {{ form_widget(form.project_category,{'attr':{'class':'admin-gallery-update-input'}}) }}
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+
+                <div class="row align-items-center admin-gallery-update-section">
+                    <div class="col-2">
                         {{ form_label(form.main_picture,"Image principale",{'label_attr':{'class':'admin-label'}}) }}
                     </div>
                     <div class="col-2">

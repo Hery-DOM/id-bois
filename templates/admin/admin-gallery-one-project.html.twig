@@ -7,6 +7,7 @@
             <a href="{{ path('admin_gallery') }}" class="back">Retour</a>
             <h1>Titre : {{ project.title }}</h1>
             <p>Description : {{ project.description }}</p>
+            <p>Type : {{ project.projectCategory.name }}</p>
             <div class="row align-items-center">
                 <p class="col-2">Image principale : </p>
                 <div class="admin-gallery-single-img-box col-3">

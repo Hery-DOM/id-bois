@@ -4,9 +4,11 @@
 namespace App\Controller;
 
 
+use App\Entity\Article;
 use App\Form\HomeType;
 use App\Form\ProjectType;
 use App\Repository\ArticleRepository;
+use App\Repository\TypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -87,6 +89,27 @@ class AdminController extends AbstractController
         return $this->render('admin/admin-gallery-one-project.html.twig',[
             'project' => $project
         ]);
+    }
+
+    /**
+     * @Route("/admin/gallery/new", name="admin_gallery_new")
+     * admin gallery page = create a new project
+     */
+    public function adminGalleryCreate(TypeRepository $typeRepository, EntityManagerInterface $entityManager)
+    {
+        $project = new Article();
+        $project->setUser($this->getUser());
+
+        //get type 3 instance
+        $type = $typeRepository->find(3);
+
+        $project->setTitle('NOUVEAU PROJET');
+        $project->setType($type);
+
+        $entityManager->persist($project);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin_gallery');
     }
 
     /**

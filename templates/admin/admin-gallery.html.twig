@@ -3,6 +3,7 @@
 {% block content %}
     <div class="container-fluid">
         <div class="container d-flex justify-content-around flex-column admin-container">
+            <a href="{{ path('admin_gallery_new') }}" class="btn btn-info w-50 mx-auto">Créer un nouveau projet</a>
             {% for project in projects %}
                 <div class="row admin-gallery-row align-items-center">
                     <div class="col-6 admin-gallery-title">

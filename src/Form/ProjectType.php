@@ -3,6 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Entity\ProjectCategory;
+use App\Entity\Type;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,6 +19,10 @@ class ProjectType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('main_picture')
+            ->add('project_category',EntityType::class,[
+                'class' => ProjectCategory::class,
+                'choice_label' => 'name'
+            ])
             ->add('Modifier', SubmitType::class)
         ;
     }
