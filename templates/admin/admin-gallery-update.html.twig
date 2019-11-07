@@ -1,0 +1,56 @@
+{% extends 'bases/bases-admin.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container admin-container d-flex align-items-start flex-column
+        admin-gallery-single-container">
+            <a href="{{ path('admin_gallery') }}" class="back">Retour</a>
+            {% for message in app.flashes('info') %}
+                <p>{{ message }}</p>
+            {% endfor %}
+            {{ form_start(form,{'attr':{'class':'admin-gallery-update-start'}}) }}
+                <div class="row align-items-center admin-gallery-update-section">
+                    <div class="col-2">
+                        {{ form_label(form.title,"Titre",{'label_attr':{'class':'admin-label'}}) }}
+                    </div>
+                    <div class="col-8">
+                        {{ form_widget(form.title,{'attr':{'class':'admin-gallery-update-input'}}) }}
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+
+                <div class="row align-items-center admin-gallery-update-section">
+                    <div class="col-2">
+                        {{ form_label(form.description,"Description",{'label_attr':{'class':'admin-label'}}) }}
+                    </div>
+                    <div class="col-8">
+                        {{ form_widget(form.description,{'attr':{'class':'admin-gallery-update-input
+                        admin-gallery-update-textarea'}}) }}
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+
+                <div class="row align-items-center admin-gallery-update-section">
+                    <div class="col-2">
+                        {{ form_label(form.main_picture,"Image principale",{'label_attr':{'class':'admin-label'}}) }}
+                    </div>
+                    <div class="col-2">
+                        <div class="admin-gallery-update-img-box">
+                            <img class="img-fluid" src="https://www.made-in-meubles.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/n/2/n240-bois-4-meuble-cuisine-bois-massif-face.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        {{ form_widget(form.main_picture) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="admin-gallery-update-submit">
+                        {{ form_widget(form.Modifier,{'attr':{'class':'btn btn-success admin-gallery-update-btn'}}) }}
+                    </div>
+                </div>
+                
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

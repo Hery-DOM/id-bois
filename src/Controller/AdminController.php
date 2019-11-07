@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Form\HomeType;
+use App\Form\ProjectType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,6 +39,7 @@ class AdminController extends AbstractController
             if($formDescription->isValid() && $formDescription->isSubmitted()){
                 $entityManager->persist($description);
                 $entityManager->flush();
+                $this->addFlash('info', "Description modifiée");
                 $this->redirectToRoute('admin_home');
             }
         }
@@ -49,6 +51,7 @@ class AdminController extends AbstractController
             if($formCall->isValid() && $formCall->isSubmitted()){
                 $entityManager->persist($call);
                 $entityManager->flush();
+                $this->addFlash('info', "Bouton \"call-to-action\" modifié");
                 $this->redirectToRoute('admin_home');
             }
         }
@@ -83,6 +86,38 @@ class AdminController extends AbstractController
 
         return $this->render('admin/admin-gallery-one-project.html.twig',[
             'project' => $project
+        ]);
+    }
+
+    /**
+     * @Route("/admin/gallery/update", name="admin_gallery_update")
+     * admin gallery page = update a project
+     */
+    public function adminGalleryUpdate(Request $request, ArticleRepository $articleRepository, EntityManagerInterface $entityManager)
+    {
+        $id = $request->query->get('id');
+        $project = $articleRepository->find($id);
+
+        $form = $this->createForm(ProjectType::class, $project);
+        $formView = $form->createView();
+
+        //if form is submit
+        if($request->isMethod('POST')){
+            $form->handleRequest($request);
+
+            if($form->isSubmitted() && $form->isValid()){
+                $entityManager->persist($project);
+                $entityManager->flush();
+                $this->addFlash('info','Modification enregistrée');
+                return $this->redirectToRoute('admin_gallery_update',[
+                    'id' => $id
+                ]);
+            }
+
+        }
+
+        return $this->render('admin/admin-gallery-update.html.twig',[
+            'form' => $formView
         ]);
     }
 
