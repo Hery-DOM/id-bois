@@ -121,5 +121,19 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/admin/gallery/remove", name="admin_gallery_remove")
+     * admin gallery page = remove a project
+     */
+    public function adminGalleryRemove(Request $request, ArticleRepository $articleRepository, EntityManagerInterface
+$entityManager)
+    {
+        $id = $request->query->get('id');
+        $project = $articleRepository->find($id);
+        $entityManager->remove($project);
+        $entityManager->flush();
+        return $this->redirectToRoute('admin_gallery');
+    }
+
 
 }

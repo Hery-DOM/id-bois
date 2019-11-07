@@ -15,7 +15,8 @@
                         <a href="{{ path('admin_gallery_update',{'id':project.id}) }}">Modifier</a>
                     </div>
                     <div class="col-2 admin-gallery-action">
-                        <a href="#">Supprimer</a>
+                        <a onclick="confirmRemove('{{ path('admin_gallery_remove',{'id':project.id})}}')"
+                           href="#">Supprimer</a>
                     </div>
                 </div>
             {% endfor %}

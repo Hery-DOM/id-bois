@@ -36,3 +36,11 @@ function showHiddenMenu(){
 function closeHiddenMenu(){
     $('.base-hidden-menu').css('left','-100vw');
 }
+
+
+// ADMIN confirm remove in gallery for a project
+function confirmRemove(url){
+    if(confirm('Voulez-vous vraiment supprimer ce projet ?')){
+        $(location).attr('href',url);
+    }
+}
