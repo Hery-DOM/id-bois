@@ -1,0 +1,24 @@
+{% extends 'bases/bases-admin.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container d-flex justify-content-around flex-column admin-container">
+            {% for project in projects %}
+                <div class="row admin-gallery-row align-items-center">
+                    <div class="col-6 admin-gallery-title">
+                        <h2>{{ project.title }}</h2>
+                    </div>
+                    <div class="col-2 admin-gallery-action">
+                        <a href="#">Voir</a>
+                    </div>
+                    <div class="col-2 admin-gallery-action">
+                        <a href="#">Modifier</a>
+                    </div>
+                    <div class="col-2 admin-gallery-action">
+                        <a href="#">Supprimer</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

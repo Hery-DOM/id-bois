@@ -59,5 +59,18 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/admin/gallery",name="admin_gallery")
+     * admin gallery page = show all projects
+     */
+    public function adminGallery(ArticleRepository $articleRepository)
+    {
+        $projects = $articleRepository->findAllProjects();
+
+        return $this->render('admin/admin-gallery.html.twig',[
+            'projects' => $projects
+         ]);
+    }
+
 
 }
