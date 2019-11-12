@@ -1,1 +1,62 @@
-{{ form(form) }}
+{% extends 'bases/bases-admin.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container  d-flex justify-content-around flex-column admin-container">
+            {{ form_start(form) }}
+            <div class="row align-items-center">
+                <div class="col-2">
+                    {{ form_label(form.username,'Nom d\'utilisateur',{'label_attr':{'class':'admin-label'}}) }}
+                </div>
+                <div class="col-10">
+                    {{ form_widget(form.username,{'attr':{'class':'admin-input'}}) }}
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-2">
+                    {{ form_label(form.first_name,'Prénom',{'label_attr':{'class':'admin-label'}}) }}
+                </div>
+                <div class="col-10">
+                    {{ form_widget(form.first_name,{'attr':{'class':'admin-input'}}) }}
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-2">
+                    {{ form_label(form.last_name,'Nom de famille',{'label_attr':{'class':'admin-label'}}) }}
+                </div>
+                <div class="col-10">
+                    {{ form_widget(form.last_name,{'attr':{'class':'admin-input'}}) }}
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-2">
+                    {{ form_label(form.email,'Email',{'label_attr':{'class':'admin-label'}}) }}
+                </div>
+                <div class="col-10">
+                    {{ form_widget(form.email,{'attr':{'class':'admin-input'}}) }}
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-2">
+                    {{ form_label(form.description,'Description',{'label_attr':{'class':'admin-label'}}) }}
+                </div>
+                <div class="col-10">
+                    {{ form_widget(form.description,{'attr':{'class':'admin-input'}}) }}
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <input type="submit" value="Modifier" type="button" class="btn btn-success">
+                </div>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+{% endblock %}

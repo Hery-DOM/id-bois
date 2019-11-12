@@ -269,7 +269,7 @@ $entityManager)
      * @Route("/admin/profile", name="admin_profile")
      * admin profile page
      */
-    public function adminProfile()
+    public function adminProfile(Request $request, EntityManagerInterface $entityManager)
     {
         //get current user
         $user = $this->getUser();
@@ -277,7 +277,18 @@ $entityManager)
         //make form to update profile
         $form = $this->createForm(ProfileType::class, $user);
 
-        return $this->render('admin-profile.html.twig',[
+        //if form is submit
+        if($request->isMethod('POST')){
+            $form->handleRequest($request);
+
+            if($form->isSubmitted() && $form->isValid()){
+                $entityManager->persist($user);
+                $entityManager->flush();
+                return $this->redirectToRoute('admin_profile');
+            }
+        }
+
+        return $this->render('admin/admin-profile.html.twig',[
             'form' => $form->createView()
         ]);
     }
