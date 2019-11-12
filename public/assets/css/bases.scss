@@ -65,8 +65,8 @@ body{
   background-image: url("../img/logo-background-2.png");
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+  background-size: 43%;
+  background-position: 58%;
   position: relative;
 }
 
@@ -88,7 +88,7 @@ body{
   width: 100vw;
   height: 100vh;
   background-color: white;
-  position: absolute;
+  position: fixed;
   top:0;
   left:100vw;
   display: none;

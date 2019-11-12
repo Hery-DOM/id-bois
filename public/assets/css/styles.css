@@ -66,8 +66,8 @@ body {
   background-image: url("../img/logo-background-2.png");
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+  background-size: 43%;
+  background-position: 58%;
   position: relative; }
 
 .profile {
@@ -86,7 +86,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: white;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 100vw;
   display: none;
@@ -572,5 +572,21 @@ body {
   width: 40%; }
 
 /********** FIN - UPDATE PROJECT **********/
+.admin-ecolo-article-text-box {
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 10px; }
+
+.admin-ecolo-article-text {
+  color: white;
+  text-align: left; }
+
+.admin-ecolo-divider {
+  width: 80%;
+  height: 2px;
+  background-color: white;
+  margin: 10px auto; }
 
 /*# sourceMappingURL=styles.css.map */

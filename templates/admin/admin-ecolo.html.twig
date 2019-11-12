@@ -1,0 +1,45 @@
+{% extends 'bases/bases-admin.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container d-flex justify-content-around flex-column admin-container">
+            {{ form_start(form) }}
+                <div class="row align-items-center">
+                    <div class="col-2">
+                        {{ form_label(form.description,'Description',{'label_attr':{'class':'admin-label'}}) }}
+                    </div>
+                    <div class="col-8">
+                        {{ form_widget(form.description,{'attr':{'class':'admin-input'}}) }}
+                    </div>
+                    <div class="col-2">
+                        <input type="submit" class="btn btn-success" value="Modifier" name="submit-description">
+                    </div>
+                </div>
+            {{ form_end(form) }}
+
+            {% for article in articles %}
+                <div class="row">
+                    <div class="col-5">
+                        <div class="admin-ecolo-article-text-box">
+                            <p class="admin-ecolo-article-text">{{ article.description }}</p>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="admin-ecolo-img-box">
+                            <img src="https://www.numerama.com/content/uploads/2018/10/boiiis.jpg" alt="" style="border: 1px solid red;" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <a href="#"><button type="button" class="btn btn-secondary">Modifier l'article</button></a>
+                    </div>
+                    <div class="col-2">
+                        <a href="#"><button type="button" class="btn btn-danger">Supprimer l'article</button></a>
+                    </div>
+                </div>
+                <div class="admin-ecolo-divider"></div>
+                
+
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

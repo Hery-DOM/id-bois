@@ -158,5 +158,37 @@ $entityManager)
         return $this->redirectToRoute('admin_gallery');
     }
 
+    /**
+     * @Route("/admin/ecolo", name="admin_ecolo")
+     * admin ecolo page
+     */
+    public function adminEcolo(ArticleRepository $articleRepository, Request $request, EntityManagerInterface $entityManager)
+    {
+        //get ecolo's description
+        $description = $articleRepository->findBy(['type' => 5]);
+        $description = $description[0];
+
+        //get ecolo's articles
+        $articles = $articleRepository->findBy(['type' => 6]);
+
+        $form = $this->createForm(HomeType::class, $description);
+        $formView = $form->createView();
+
+        if($request->isMethod('POST') && isset($_POST['submit-description'])){
+            $form->handleRequest($request);
+
+            if($form->isValid()){
+                $entityManager->persist($description);
+                $entityManager->flush();
+                return $this->redirectToRoute('admin_ecolo');
+            }
+        }
+
+        return $this->render('admin/admin-ecolo.html.twig',[
+            'form' => $formView,
+            'articles' => $articles
+        ]);
+
+    }
 
 }
