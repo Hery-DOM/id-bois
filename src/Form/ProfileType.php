@@ -16,6 +16,7 @@ class ProfileType extends AbstractType
             ->add('first_name')
             ->add('last_name')
             ->add('email')
+            ->add('phone')
             ->add('description')
         ;
     }

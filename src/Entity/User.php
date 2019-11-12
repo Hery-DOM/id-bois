@@ -46,6 +46,11 @@ class User extends BaseUser
      */
     private $first_name;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $phone;
+
     public function __construct()
     {
         parent::__construct();
@@ -128,6 +133,18 @@ class User extends BaseUser
     public function setFirstName(?string $first_name): self
     {
         $this->first_name = $first_name;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
 
         return $this;
     }

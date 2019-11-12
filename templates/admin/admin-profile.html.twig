@@ -42,6 +42,15 @@
 
             <div class="row align-items-center">
                 <div class="col-4">
+                    {{ form_label(form.phone,'Numéro de téléphone',{'label_attr':{'class':'admin-label'}}) }}
+                </div>
+                <div class="col-8">
+                    {{ form_widget(form.phone,{'attr':{'class':'admin-input'}}) }}
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-4">
                     {{ form_label(form.description,'Description',{'label_attr':{'class':'admin-label'}}) }}
                 </div>
                 <div class="col-8">
