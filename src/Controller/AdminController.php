@@ -243,5 +243,26 @@ $entityManager)
         return $this->redirectToRoute('admin_ecolo');
     }
 
+    /**
+     * @Route("/admin/ecolo/add", name="admin_ecolo_add")
+     * admin ecolo page to add an article
+     */
+    public function adminEcoloAdd(TypeRepository $typeRepository, EntityManagerInterface $entityManager)
+    {
+        $article = new Article();
+        //get type
+        $type = $typeRepository->find(6);
+        //get user
+        $user = $this->getUser();
+
+        $article->setType($type);
+        $article->setUser($user);
+
+        $entityManager->persist($article);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin_ecolo');
+    }
+
 
 }
