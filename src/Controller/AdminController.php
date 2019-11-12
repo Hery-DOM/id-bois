@@ -226,4 +226,22 @@ $entityManager)
         ]);
 
     }
+
+    /**
+     * @Route("/admin/ecolo/delete", name="admin_ecolo_delete")
+     * admin ecolo page to remove article
+     */
+    public  function adminEcoloDelete(Request $request, ArticleRepository $articleRepository, EntityManagerInterface $entityManager)
+    {
+        //get article's ID
+        $id = $request->query->get('id');
+        //get article
+        $article = $articleRepository->find($id);
+
+        $entityManager->remove($article);
+        $entityManager->flush();
+        return $this->redirectToRoute('admin_ecolo');
+    }
+
+
 }

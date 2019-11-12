@@ -35,7 +35,9 @@
                                 l'article</button></a>
                     </div>
                     <div class="col-2">
-                        <a href="#"><button type="button" class="btn btn-danger">Supprimer l'article</button></a>
+                        <button type="button" class="btn btn-danger" onclick="confirmRemove('{{ path
+                            ('admin_ecolo_delete',{'id':article.id}) }}')">Supprimer
+                            l'article</button>
                     </div>
                 </div>
                 <div class="admin-ecolo-divider"></div>

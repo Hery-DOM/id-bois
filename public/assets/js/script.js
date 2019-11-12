@@ -38,9 +38,9 @@ function closeHiddenMenu(){
 }
 
 
-// ADMIN confirm remove in gallery for a project
+// ADMIN confirm remove (project in gallery or article in ecolo)
 function confirmRemove(url){
-    if(confirm('Voulez-vous vraiment supprimer ce projet ?')){
+    if(confirm('Confirmer la suppresion ?')){
         $(location).attr('href',url);
     }
 }
