@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Repository\ArticleRepository;
 use App\Repository\ProjectCategoryRepository;
+use FOS\UserBundle\Model\UserManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,11 +18,11 @@ class HomeController extends AbstractController
      * homepage with description
      */
 
-    public function home(ArticleRepository $articleRepository)
+    public function home(ArticleRepository $articleRepository, UserManagerInterface $userManager)
     {
         $description = $articleRepository->findBy(['type'=>1]);
         $button = $articleRepository->findBy(['type'=>2]);
-        $profile = $articleRepository->findBy(['type'=>7]);
+        $profile = $userManager->findUserBy(['id' => 1]);
 
         return $this->render('home.html.twig',[
             'description' => $description,

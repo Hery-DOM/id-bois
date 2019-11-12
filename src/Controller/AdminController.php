@@ -264,5 +264,18 @@ $entityManager)
         return $this->redirectToRoute('admin_ecolo');
     }
 
+    /**
+     * @Route("/admin/profile", name="admin_profile")
+     * admin profile page
+     */
+    public function adminProfile()
+    {
+        //get current user
+        $user = $this->getUser();
+
+        //make form to update profile
+        $form = $this->createForm();
+    }
+
 
 }
