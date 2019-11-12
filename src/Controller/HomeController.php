@@ -36,9 +36,9 @@ class HomeController extends AbstractController
      * gallery page, to select the category
      */
     public function galleryHome(ProjectCategoryRepository $projectCategoryRepository, ArticleRepository
-    $articleRepository)
+    $articleRepository, UserManagerInterface $userManager)
     {
-        $profile = $articleRepository->findBy(['type'=>7]);
+        $profile = $userManager->findUserBy(['id' => 1]);
         $categories = $projectCategoryRepository->findAll();
 
         return $this->render('gallery_categories.html.twig',[
@@ -51,9 +51,9 @@ class HomeController extends AbstractController
      * @Route("/galerie/categorie",name="gallery_category")
      * gallery page, show products from category selected
      */
-    public function galleryCategory(ArticleRepository $articleRepository, Request $request, ProjectCategoryRepository $projectCategoryRepository)
+    public function galleryCategory(ArticleRepository $articleRepository, Request $request, ProjectCategoryRepository $projectCategoryRepository, UserManagerInterface $userManager)
     {
-        $profile = $articleRepository->findBy(['type'=>7]);
+        $profile = $userManager->findUserBy(['id' => 1]);
         $categories = $projectCategoryRepository->findAll();
         //get category's ID
         $id = $request->query->get('id');
@@ -89,9 +89,9 @@ class HomeController extends AbstractController
      * @Route("/ecolo",name="ecolo")
      * ecolo page
      */
-    public function ecolo(ArticleRepository $articleRepository)
+    public function ecolo(ArticleRepository $articleRepository, UserManagerInterface $userManager)
     {
-        $profile = $articleRepository->findBy(['type'=>7]);
+        $profile = $userManager->findUserBy(['id' => 1]);
         //get ecolo's description
         $description = $articleRepository->findBy(['type' => 5]);
 
@@ -109,9 +109,9 @@ class HomeController extends AbstractController
      * @Route("/contact", name="contact")
      * contact page
      */
-    public function contact(ArticleRepository $articleRepository, Request $request)
+    public function contact(ArticleRepository $articleRepository, Request $request, UserManagerInterface $userManager)
     {
-        $profile = $articleRepository->findBy(['type' => 7]);
+        $profile = $userManager->findUserBy(['id' => 1]);
 
         //if form is send
         if($request->isMethod('POST')){
@@ -163,9 +163,9 @@ class HomeController extends AbstractController
      * @Route("/mentions-legales", name="legal")
      * legal notice page
      */
-    public function legal(ArticleRepository $articleRepository)
+    public function legal(ArticleRepository $articleRepository, UserManagerInterface $userManager)
     {
-        $profile = $articleRepository->findBy(['type'=>7]);
+        $profile = $userManager->findUserBy(['id' => 1]);
 
         return $this->render('legal.html.twig',[
             'profile' => $profile

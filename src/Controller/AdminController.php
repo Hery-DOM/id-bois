@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\EcoloType;
 use App\Form\HomeType;
+use App\Form\ProfileType;
 use App\Form\ProjectType;
 use App\Repository\ArticleRepository;
 use App\Repository\TypeRepository;
@@ -274,7 +275,11 @@ $entityManager)
         $user = $this->getUser();
 
         //make form to update profile
-        $form = $this->createForm();
+        $form = $this->createForm(ProfileType::class, $user);
+
+        return $this->render('admin-profile.html.twig',[
+            'form' => $form->createView()
+        ]);
     }
 
 
