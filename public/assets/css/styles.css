@@ -522,6 +522,10 @@ body {
   border-radius: 20px;
   padding: 10px; }
 
+.info {
+  color: white;
+  text-align: left; }
+
 .admin-gallery-row {
   padding-left: 20px; }
 

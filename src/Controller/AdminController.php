@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Entity\Article;
+use App\Form\EcoloType;
 use App\Form\HomeType;
 use App\Form\ProjectType;
 use App\Repository\ArticleRepository;
@@ -191,4 +192,38 @@ $entityManager)
 
     }
 
+    /**
+     * @Route("/admin/ecolo/article", name="admin_ecolo_article")
+     * admin ecolo article page to update it
+     */
+    public function adminEcoloArticle(Request $request, ArticleRepository $articleRepository, EntityManagerInterface $entityManager)
+    {
+        //get article's ID
+        $id = $request->query->get('id');
+        //get article
+        $article = $articleRepository->find($id);
+
+        //make form
+        $form = $this->createForm(EcoloType::class, $article);
+
+        //if form is submit
+        if($request->isMethod('POST')){
+            $form->handleRequest($request);
+
+            if($form->isValid() && $form->isSubmitted()){
+                $entityManager->persist($article);
+                $entityManager->flush();
+                $this->addFlash('info','Article modifié');
+                return $this->redirectToRoute('admin_ecolo_article',[
+                    'id' => $id
+                ]);
+            }
+        }
+
+
+        return $this->render('admin/admin-ecolo-article.html.twig',[
+            'form' => $form->createView()
+        ]);
+
+    }
 }

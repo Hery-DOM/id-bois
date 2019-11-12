@@ -1,0 +1,42 @@
+{% extends 'bases/bases-admin.html.twig' %}
+
+{% block content %}
+
+    <div class="container-fluid">
+
+        <div class="container  d-flex justify-content-around flex-column admin-container">
+            <a href="{{ path('admin_ecolo') }}" class="back text-left">Retour</a>
+            {% for message in app.flashes('info') %}
+                <p class="info">{{ message }}</p>
+            {% endfor %}
+            {{ form_start(form) }}
+            <div class="row align-items-center">
+                <div class="col-2">
+                    {{ form_label(form.description,'Texte',{'label_attr':{'class':'admin-label'}}) }}
+                </div>
+                <div class="col-10">
+                    {{ form_widget(form.description,{'attr':{'class':'admin-input'}}) }}
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-2">
+                    {{ form_label(form.main_picture,'Image',{'label_attr':{'class':'admin-label'}}) }}
+                </div>
+                <div class="col-10">
+                    {{ form_widget(form.main_picture,{'attr':{'class':'admin-input'}}) }}
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <input type="submit" value="Modifier" class="btn btn-success mt-4">
+                </div>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+
+{% endblock %}

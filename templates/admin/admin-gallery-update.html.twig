@@ -6,7 +6,7 @@
         admin-gallery-single-container">
             <a href="{{ path('admin_gallery') }}" class="back">Retour</a>
             {% for message in app.flashes('info') %}
-                <p>{{ message }}</p>
+                <p class="info">{{ message }}</p>
             {% endfor %}
             {{ form_start(form,{'attr':{'class':'admin-gallery-update-start'}}) }}
                 <div class="row align-items-center admin-gallery-update-section">
