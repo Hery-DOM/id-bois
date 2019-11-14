@@ -4,6 +4,19 @@
     <div class="container-fluid">
         <div class="container  d-flex justify-content-around flex-column admin-container">
             {{ form_start(form) }}
+
+            <div class="row align-items-center">
+                <div class="col-4">
+                    {{ form_label(form.picture,'Photo de profil',{'label_attr':{'class':'admin-label'}}) }}
+                </div>
+                <div class="col-2">
+                    <img src="#" alt="" class="img-fluid">
+                </div>
+                <div class="col-6">
+                    {{ form_widget(form.picture,{'attr':{'class':'admin-input'}}) }}
+                </div>
+            </div>
+
             <div class="row align-items-center">
                 <div class="col-4">
                     {{ form_label(form.username,'Nom d\'utilisateur',{'label_attr':{'class':'admin-label'}}) }}
