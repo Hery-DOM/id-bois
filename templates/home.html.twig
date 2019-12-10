@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block content %}
+    {{ render(path('ch_cookie_consent.show', { 'locale' : 'fr' })) }}
+
+
     <div class="home-box">
         <div class="home-text-box">
             <p class="home-description">{{ description[0].description }}</p>
