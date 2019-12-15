@@ -13,6 +13,7 @@ use App\Repository\ArticleRepository;
 use App\Repository\TypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -131,6 +132,41 @@ class AdminController extends AbstractController
             $form->handleRequest($request);
 
             if($form->isSubmitted() && $form->isValid()){
+                /** @var UploadedFile $picture */
+                $picture = $form['main_picture']->getData();
+
+                // this condition is needed because the 'brochure' field is not required
+                // so the picture file must be processed only when a file is uploaded
+                if ($picture) {
+                    $originalFilename = pathinfo($picture->getClientOriginalName(), PATHINFO_FILENAME);
+                    // this is needed to safely include the file name as part of the URL
+                    $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                    $newFilename = $safeFilename.'-'.uniqid().'.'.$picture->guessExtension();
+
+                    // Move the file to the directory where brochures are stored
+                    try {
+                        $try_move = $picture->move(
+                                        $this->getParameter('article_images'),
+                                        $newFilename
+                                    );
+                        if(!$try_move){
+                            throw new Exception();
+                        }
+                    } catch (Exception $e) {
+                        // ... handle exception if something happens during file upload
+                        $this->addFlash('error','Erreur lors du chargement de l\'image');
+                        return $this->redirectToRoute('admin_gallery_update',[
+                            'id' => $id
+                        ]);
+                    }
+
+                    // updates the 'picture name' property to store the PDF file name
+                    // instead of its contents
+                    $project->setMainPicture($newFilename);
+                }
+
+
+
                 $entityManager->persist($project);
                 $entityManager->flush();
                 $this->addFlash('info','Modification enregistrée');
@@ -142,7 +178,8 @@ class AdminController extends AbstractController
         }
 
         return $this->render('admin/admin-gallery-update.html.twig',[
-            'form' => $formView
+            'form' => $formView,
+            'project' => $project
         ]);
     }
 
