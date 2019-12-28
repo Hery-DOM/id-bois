@@ -145,6 +145,9 @@ class AdminController extends AbstractController
 
                     // Move the file to the directory where brochures are stored
                     try {
+                        if(!is_null($project->getMainPicture())){
+                            unlink("assets/img//".$project->getMainPicture());
+                        }
                         $try_move = $picture->move(
                                         $this->getParameter('article_images'),
                                         $newFilename
@@ -154,7 +157,7 @@ class AdminController extends AbstractController
                         }
                     } catch (Exception $e) {
                         // ... handle exception if something happens during file upload
-                        $this->addFlash('error','Erreur lors du chargement de l\'image');
+                        $this->addFlash('info','Erreur lors du chargement de l\'image');
                         return $this->redirectToRoute('admin_gallery_update',[
                             'id' => $id
                         ]);

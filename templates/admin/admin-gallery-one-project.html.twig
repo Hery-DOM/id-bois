@@ -11,9 +11,12 @@
             <div class="row align-items-center">
                 <p class="col-2">Image principale : </p>
                 <div class="admin-gallery-single-img-box col-3">
-                    <img class="img-fluid" src="https://www.made-in-meubles.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/n/2/n240-bois-4-meuble-cuisine-bois-massif-face.jpg" alt="">
+                    <img class="img-fluid" src="{{ asset('assets/img/') }}/{{ project.mainPicture }}" alt="">
                 </div>
                 <div class="col-7"></div>
+            </div>
+            <div class="row align-items-center">
+                <!-- boucle pour afficher la galerie d'images liées au projet -->
             </div>
         </div>
     </div>

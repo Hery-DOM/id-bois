@@ -193,13 +193,12 @@ body {
 
 .home-button {
   margin-top: 20px;
-  padding: 20px;
   border-radius: 20px;
   border: 0;
   background-color: white;
   color: black;
-  width: 50%;
-  height: 20%; }
+  width: 30%;
+  height: 15%; }
 
 .home-button:hover {
   background-color: dimgrey;
@@ -407,12 +406,12 @@ body {
     margin-top: 40px; }
 
 /***** HOME PAGE *****/
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1200px) {
   .home-description {
-    font-size: 80%; }
+    font-size: 1.6em; }
 
   .home-button {
-    font-size: 80%;
+    font-size: 1.2em;
     width: 80%; } }
 /***** END - HOME PAGE *****/
 /***** GALLERY PAGE *****/
@@ -551,6 +550,8 @@ body {
 /********** SINGLE PROJECT **********/
 .admin-gallery-single-container {
   color: white; }
+  .admin-gallery-single-container .admin-gallery-update-start {
+    width: 100%; }
 
 /********** FIN - SINGLE PROJECT **********/
 /********** UPDATE PROJECT **********/
