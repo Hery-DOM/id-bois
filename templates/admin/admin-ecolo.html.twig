@@ -18,7 +18,7 @@
             {{ form_end(form) }}
 
             {% for article in articles %}
-                <div class="row">
+                <div class="row align-items-center">
                     <div class="col-5">
                         <div class="admin-ecolo-article-text-box">
                             <p class="admin-ecolo-article-text">{{ article.description }}</p>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="col-2">
                         <div class="admin-ecolo-img-box">
-                            <img src="https://www.numerama.com/content/uploads/2018/10/boiiis.jpg" alt="" style="border: 1px solid red;" class="img-fluid">
+                            <img src="{{ asset('assets/img') }}/{{ article.mainPicture }}" alt="" class="img-fluid">
                         </div>
                     </div>
                     <div class="col-3">

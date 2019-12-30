@@ -71,4 +71,37 @@
   width: 40%;
 }
 
+.admin-picture-img-box{
+  width: 200px;
+  position: relative;
+  margin-top: 10px;
+}
+
+.admin-picture-img-remove{
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  color: red;
+  font-weight: bold;
+  font-size: 1.6em;
+
+  .admin-picture-img-remove-message{
+    display: none;
+    font-size: 0.8em;
+    font-weight: normal;
+  }
+}
+
+.admin-picture-img-remove:hover{
+  cursor: pointer;
+  color: red;
+  .admin-picture-img-remove-message{
+    display: inline-block;
+  }
+}
+
+.admin-picture-fields{
+  margin: 10px 5px;
+}
+
 /********** FIN - UPDATE PROJECT **********/

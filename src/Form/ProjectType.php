@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Entity\Picture;
 use App\Entity\ProjectCategory;
 use App\Entity\Type;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;

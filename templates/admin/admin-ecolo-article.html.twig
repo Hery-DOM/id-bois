@@ -7,7 +7,7 @@
         <div class="container  d-flex justify-content-around flex-column admin-container">
             <a href="{{ path('admin_ecolo') }}" class="back text-left">Retour</a>
             {% for message in app.flashes('info') %}
-                <p class="info">{{ message }}</p>
+                <p class="info text-danger">{{ message }}</p>
             {% endfor %}
             {{ form_start(form) }}
             <div class="row align-items-center">
@@ -22,9 +22,13 @@
             <div class="row align-items-center">
                 <div class="col-2">
                     {{ form_label(form.main_picture,'Image',{'label_attr':{'class':'admin-label'}}) }}
+                    <p class="text-light ">Moins de 3 Mo, format JPEG, JPG ou PNG</p>
                 </div>
-                <div class="col-10">
+                <div class="col-6 offset-1">
                     {{ form_widget(form.main_picture,{'attr':{'class':'admin-input'}}) }}
+                </div>
+                <div class="col-3">
+                    <img src="{{ asset('assets/img') }}/{{ article.mainPicture }}" alt="" class="img-fluid">
                 </div>
             </div>
 

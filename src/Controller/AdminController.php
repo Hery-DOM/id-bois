@@ -5,11 +5,14 @@ namespace App\Controller;
 
 
 use App\Entity\Article;
+use App\Entity\Picture;
 use App\Form\EcoloType;
 use App\Form\HomeType;
+use App\Form\PicturesType;
 use App\Form\ProfileType;
 use App\Form\ProjectType;
 use App\Repository\ArticleRepository;
+use App\Repository\PictureRepository;
 use App\Repository\TypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -84,13 +87,16 @@ class AdminController extends AbstractController
      * @Route("/admin/gallery/project",name="admin_gallery_single_project")
      * admin gallery page = show one project
      */
-    public function adminGalleryOneProject(Request $request, ArticleRepository $articleRepository)
+    public function adminGalleryOneProject(Request $request, ArticleRepository $articleRepository, PictureRepository
+    $pictureRepository)
     {
         $id = $request->query->get('id');
         $project = $articleRepository->find($id);
+        $pictures = $pictureRepository->findAllPictures($id);
 
         return $this->render('admin/admin-gallery-one-project.html.twig',[
-            'project' => $project
+            'project' => $project,
+            'pictures' => $pictures
         ]);
     }
 
@@ -163,7 +169,7 @@ class AdminController extends AbstractController
                         ]);
                     }
 
-                    // updates the 'picture name' property to store the PDF file name
+                    // updates the 'picture name' property to store the file name
                     // instead of its contents
                     $project->setMainPicture($newFilename);
                 }
@@ -187,6 +193,110 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route("/admin/gallery/update/pictures", name="admin_pictures_update")
+     * Show all gallery project's pictures + add + remove
+     */
+    public function adminPicturesUpdate(Request $request, ArticleRepository $articleRepository,
+                                        EntityManagerInterface $entityManager)
+    {
+        $new_picture = new Picture();
+
+        //get project's ID
+        $id = $request->query->get('id');
+
+        //get project
+        $project = $articleRepository->findPicturesProject($id);
+
+        //get form
+        $form = $this->createForm(PicturesType::class, $new_picture);
+        $formView = $form->createView();
+
+        if($request->isMethod('POST')){
+            $form->handleRequest($request);
+
+            if(!$form->isValid()){
+                $this->addFlash('info',"Erreur lors du chargement (format : jpg, jpeg, png / taille max : 3 Mo)");
+                return $this->redirectToRoute('admin_pictures_update',[
+                    'id' => $id
+                ]);
+            }
+
+            if($form->isSubmitted() && $form->isValid()){
+                /** @var UploadedFile $picture */
+                $picture = $form['name']->getData();
+
+                // this condition is needed because the 'brochure' field is not required
+                // so the picture file must be processed only when a file is uploaded
+                if ($picture) {
+                    $originalFilename = pathinfo($picture->getClientOriginalName(), PATHINFO_FILENAME);
+                    // this is needed to safely include the file name as part of the URL
+                    $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $picture->guessExtension();
+
+                    // Move the file to the directory where brochures are stored
+                    try {
+                        $try_move = $picture->move(
+                            $this->getParameter('article_images'),
+                            $newFilename
+                        );
+                        if (!$try_move) {
+                            throw new Exception();
+                        }
+                    } catch (Exception $e) {
+                        // ... handle exception if something happens during file upload
+                        $this->addFlash('info', 'Erreur lors du chargement de l\'image');
+                        return $this->redirectToRoute('admin_pictures_update', [
+                            'id' => $id
+                        ]);
+                    }
+
+                    // updates the 'picture name' property to store the file name
+                    // instead of its contents
+                    $new_picture->setName($newFilename);
+                    $new_picture->setArticle($project);
+                }
+            }
+
+            $entityManager->persist($new_picture);
+            $entityManager->flush();
+            return $this->redirectToRoute('admin_pictures_update',[
+                'id' => $id
+            ]);
+
+        }
+
+        return $this->render('admin/admin-pictures.html.twig',[
+            'project' => $project,
+            'form' => $formView
+        ]);
+
+    }
+
+    /**
+     * @Route("/admin/gallery/remove/picture/{id}", name="admin_remove_picture")
+     * Back to remove picture / no view
+     */
+    public function removePicture($id, EntityManagerInterface $entityManager, PictureRepository $pictureRepository)
+    {
+        // get picture
+        $picture = $pictureRepository->find($id);
+
+        //get project's ID
+        $id_project = $picture->getArticle()->getId();
+
+        $entityManager->remove($picture);
+        $entityManager->flush();
+
+        //remove the picture in directory
+        unlink("assets/img//".$picture->getName());
+
+        return $this->redirectToRoute('admin_pictures_update',[
+            'id' => $id_project
+        ]);
+
+    }
+
+    /**
      * @Route("/admin/gallery/remove", name="admin_gallery_remove")
      * admin gallery page = remove a project
      */
@@ -202,7 +312,7 @@ $entityManager)
 
     /**
      * @Route("/admin/ecolo", name="admin_ecolo")
-     * admin ecolo page
+     * admin ecolo's page
      */
     public function adminEcolo(ArticleRepository $articleRepository, Request $request, EntityManagerInterface $entityManager)
     {
@@ -252,9 +362,53 @@ $entityManager)
             $form->handleRequest($request);
 
             if($form->isValid() && $form->isSubmitted()){
+
+                /** @var UploadedFile $picture */
+                $picture = $form['main_picture']->getData();
+
+                // this condition is needed because the 'brochure' field is not required
+                // so the picture file must be processed only when a file is uploaded
+                if ($picture) {
+                    $originalFilename = pathinfo($picture->getClientOriginalName(), PATHINFO_FILENAME);
+                    // this is needed to safely include the file name as part of the URL
+                    $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $picture->guessExtension();
+
+                    // Move the file to the directory where brochures are stored
+                    try {
+                        $try_move = $picture->move(
+                            $this->getParameter('article_images'),
+                            $newFilename
+                        );
+                        if (!$try_move) {
+                            throw new Exception();
+                        }
+
+                        if(!is_null($article->getMainPicture())){
+                            unlink("assets/img//".$article->getMainPicture());
+                        }
+                    } catch (Exception $e) {
+                        // ... handle exception if something happens during file upload
+                        $this->addFlash('info', 'Erreur lors du chargement de l\'image');
+                        return $this->redirectToRoute('admin_ecolo_article', [
+                            'id' => $id
+                        ]);
+                    }
+
+                    // updates the 'picture name' property to store the file name
+                    // instead of its contents
+                    $article->setMainPicture($newFilename);
+
+                }
+
                 $entityManager->persist($article);
                 $entityManager->flush();
                 $this->addFlash('info','Article modifié');
+                return $this->redirectToRoute('admin_ecolo_article',[
+                    'id' => $id
+                ]);
+            }else{
+                $this->addFlash('info','Erreur sur le formulaire (ex : taille de l\'image)');
                 return $this->redirectToRoute('admin_ecolo_article',[
                     'id' => $id
                 ]);
@@ -263,7 +417,8 @@ $entityManager)
 
 
         return $this->render('admin/admin-ecolo-article.html.twig',[
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'article' => $article
         ]);
 
     }
@@ -318,20 +473,63 @@ $entityManager)
         $form = $this->createForm(ProfileType::class, $user);
 
         //if form is submit
-        if($request->isMethod('POST')){
+        if ($request->isMethod('POST')) {
             $form->handleRequest($request);
 
-            if($form->isSubmitted() && $form->isValid()){
-                $entityManager->persist($user);
-                $entityManager->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                /** @var UploadedFile $picture */
+                $picture = $form['picture']->getData();
+
+                // this condition is needed because the 'brochure' field is not required
+                // so the picture file must be processed only when a file is uploaded
+                if ($picture) {
+                    $originalFilename = pathinfo($picture->getClientOriginalName(), PATHINFO_FILENAME);
+                    // this is needed to safely include the file name as part of the URL
+                    $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $picture->guessExtension();
+
+                    // Move the file to the directory where brochures are stored
+                    try {
+                        $try_move = $picture->move(
+                            $this->getParameter('article_images'),
+                            $newFilename
+                        );
+                        if (!$try_move) {
+                            throw new Exception();
+                        }
+
+                        if (!is_null($user->getPicture())) {
+                            unlink("assets/img//" . $user->getPicture());
+                        }
+                    } catch (Exception $e) {
+                        // ... handle exception if something happens during file upload
+                        $this->addFlash('info', 'Erreur lors du chargement de l\'image');
+                        return $this->redirectToRoute('admin_profile');
+                    }
+
+                    // updates the 'picture name' property to store the file name
+                    // instead of its contents
+                    $user->setPicture($newFilename);
+
+
+                    $entityManager->persist($user);
+                    $entityManager->flush();
+                    return $this->redirectToRoute('admin_profile');
+                }
+            }else{
+                $this->addFlash('info','Erreur sur le formulaire (ex : taille de l\'image)');
                 return $this->redirectToRoute('admin_profile');
             }
         }
 
-        return $this->render('admin/admin-profile.html.twig',[
-            'form' => $form->createView()
+        return $this->render('admin/admin-profile.html.twig', [
+            'form' => $form->createView(),
+            'user' => $user
         ]);
     }
+
+
 
 
 }

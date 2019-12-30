@@ -19,6 +19,18 @@ class PictureRepository extends ServiceEntityRepository
         parent::__construct($registry, Picture::class);
     }
 
+    public function findAllPictures($id)
+    {
+        return $this->createQueryBuilder('p')
+                    ->select('p')
+                    ->leftJoin('p.article', 'a')
+                    ->addSelect('a')
+                    ->where('p.article = :id')
+                    ->setParameter('id', $id)
+                    ->getQuery()
+                    ->getResult();
+    }
+
     // /**
     //  * @return Picture[] Returns an array of Picture objects
     //  */

@@ -78,7 +78,7 @@ class HomeController extends AbstractController
     public function project(ArticleRepository $articleRepository,$id)
     {
         //get project
-        $project = $articleRepository->find($id);
+        $project = $articleRepository->findPicturesProject($id);
 
         return $this->render('project.html.twig',[
             'project' => $project

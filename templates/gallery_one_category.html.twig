@@ -30,11 +30,12 @@
             <div class="row flex-wrap text-center">
                 {% for project in projects %}
                     <div onclick="modalShow({{ project.id }});" class="col-12 col-md-3 gallery-project-column">
-                            <div class="container gallery-project-box">
+                            <div class="container gallery-project-box border border-light">
                                 <div class="gallery-project-text">
                                     <h2>{{ project.title }}</h2>
                                 </div>
-                                <img class="img-fluid" src="https://www.made-in-meubles.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/n/2/n240-bois-4-meuble-cuisine-bois-massif-face.jpg" alt="">
+                                <img class="img-fluid" src="{{ asset('assets/img') }}/{{ project.mainPicture }}"
+                                     alt="{{ project.title }}">
                             </div>
 
                     </div>

@@ -17,13 +17,13 @@
                         <div class="col-12 col-md-6 ecolo-text-right order-2 order-md-1">{{ article.description }}</div>
                         <div class="col-12 col-md-6 text-center order-1 order-md-2">
                             <div class="ecolo-img-box">
-                                <img class="img-fluid" src="http://www.valeur-bois.com/images/actualite/104/liste/Panneaux_bois_290x193.jpg" alt="">
+                                <img class="img-fluid" src="{{ asset('assets/img') }}/{{ article.mainPicture }}" alt="">
                             </div>
                         </div>
                     {% else %}
                         <div class="col-12 col-md-6 text-center order-1 order-md-1">
                             <div class="ecolo-img-box">
-                                <img class="img-fluid" src="http://www.valeur-bois.com/images/actualite/104/liste/Panneaux_bois_290x193.jpg" alt="">
+                                <img class="img-fluid" src="{{ asset('assets/img') }}/{{ article.mainPicture }}" alt="">
                             </div>
                         </div>
                         <div class="col-12 col-md-6 ecolo-text-left order-2 order-md-2">{{ article.description }}</div>

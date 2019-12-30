@@ -30,6 +30,18 @@ class ArticleRepository extends ServiceEntityRepository
                     ->getResult();
     }
 
+    public function findPicturesProject($id)
+    {
+        return $this->createQueryBuilder('p')
+                    ->select('p')
+                    ->leftJoin('p.picture', 'pic')
+                    ->addSelect('pic')
+                    ->where('p.id = :id')
+                    ->setParameter('id', $id)
+                    ->getQuery()
+                    ->getOneOrNullResult();
+    }
+
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */

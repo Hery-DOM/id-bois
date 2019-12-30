@@ -1,0 +1,44 @@
+{% extends 'bases/bases-admin.html.twig' %}
+
+{% block content %}
+    <h1>Images du projet : {{ project.title }}</h1>
+
+    <a href="{{ path('admin_gallery_update',{'id':project.id}) }}">Retour</a>
+
+    {% for message in app.flashes('info') %}
+        <p class="info text-danger">{{ message }}</p>
+    {% endfor %}
+
+    <!-- to add a picture -->
+    <div class="border border-dark p-2 mb-4">
+        {{ form_start(form) }}
+
+        <div class="admin-picture-fields">
+            {{ form_label(form.name,'RAJOUT D\'UNE IMAGE') }}
+        </div>
+
+        <div class="admin-picture-fields">
+            {{ form_widget(form.name) }}
+        </div>
+
+        <div class="admin-picture-fields">
+            {{ form_widget(form.Ajouter,{'attr':{'class':'btn btn-success'}}) }}
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+
+    <!-- to see every pictures -->
+    <div class="row">
+        {% for picture in project.picture %}
+            <div class="admin-picture-img-box col-3">
+                <img src="{{ asset('assets/img') }}/{{ picture.name }}" alt="" class="img-fluid border border-dark">
+                <a href="{{ path('admin_remove_picture',{'id':picture.id}) }}" class="admin-picture-img-remove">X
+                    <span class="admin-picture-img-remove-message">Supprimer ?</span>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}
