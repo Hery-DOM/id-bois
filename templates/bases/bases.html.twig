@@ -83,6 +83,20 @@
 
             </div>
         </div>
+
+        {% if cookie %}
+            <div class="cookie container-fluid text-light">
+                <div class="row align-items-center pt-4">
+                    <div class="col-10">
+                        <p>Ce site utilise des cookies pour améliorer votre expérience utilisateur.</p>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-secondary cookie-btn">Ok</button>
+                        <a href="{{ path('legal') }}" class="text-light pl-3">En savoir plus...</a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </main>
 
 

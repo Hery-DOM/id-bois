@@ -9,12 +9,12 @@
         <div class="container ecolo-container">
             <h1 class="ecolo-h1">Écolo</h1>
             <div class="vertical-line vertical-line-ecolo"></div>
-            <p class="ecolo-description">{{ description[0].description }}</p>
+            <p class="ecolo-description">{{ description[0].description | nl2br  }}</p>
             {% set count = 0%}
             {% for article in articles %}
                 <div class="row ecolo-row">
                     {% if count%2 == 0 %}
-                        <div class="col-12 col-md-6 ecolo-text-right order-2 order-md-1">{{ article.description }}</div>
+                        <div class="col-12 col-md-6 ecolo-text-right order-2 order-md-1">{{ article.description | nl2br  }}</div>
                         <div class="col-12 col-md-6 text-center order-1 order-md-2">
                             <div class="ecolo-img-box">
                                 <img class="img-fluid" src="{{ asset('assets/img') }}/{{ article.mainPicture }}" alt="">
@@ -26,7 +26,7 @@
                                 <img class="img-fluid" src="{{ asset('assets/img') }}/{{ article.mainPicture }}" alt="">
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 ecolo-text-left order-2 order-md-2">{{ article.description }}</div>
+                        <div class="col-12 col-md-6 ecolo-text-left order-2 order-md-2">{{ article.description | nl2br  }}</div>
                     {% endif %}
                 </div>
                 {% set count = count +1 %}

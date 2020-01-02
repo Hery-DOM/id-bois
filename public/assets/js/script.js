@@ -37,6 +37,19 @@ function closeHiddenMenu(){
     $('.base-hidden-menu').css('left','-100vw');
 }
 
+//AJAX pour les cookies
+$('.cookie-btn').click(function(){
+    var test = $.ajax({
+        url: 'cookie',
+        type: 'POST',
+        dataType: 'html',
+        complete: function(){
+            $('.cookie').css('display','none');
+        }
+    });
+    console.log(test);
+});
+
 
 // ADMIN confirm remove (project in gallery or article in ecolo)
 function confirmRemove(url){
