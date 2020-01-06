@@ -67,7 +67,7 @@ main {
       font-size: 1.3em; }
 
 .base-content {
-  background-image: url("../img/logo-background-2.png");
+  background-image: url("../img/logo-background");
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: 43%;
@@ -137,7 +137,7 @@ main {
 
 .base-hidden-menu {
   background-color: black;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: -100vw;
   width: 100vw;
@@ -352,7 +352,8 @@ main {
 
 .ecolo-row {
   margin-bottom: 50px;
-  color: white; }
+  color: white;
+  align-items: center; }
 
 .ecolo-text-right {
   text-align: right;

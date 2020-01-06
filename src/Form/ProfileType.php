@@ -23,6 +23,7 @@ class ProfileType extends AbstractType
                         'maxSize' => '3M',
                         'mimeTypes' => [
                             'image/jpeg',
+                            'image/jpg',
                             'image/png'
                         ]
                     ])
@@ -34,6 +35,21 @@ class ProfileType extends AbstractType
             ->add('email')
             ->add('phone')
             ->add('description')
+            ->add('background', FileType::class,[
+                'label' => 'Image de fond',
+                'required' => false,
+                'mapped' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '3M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/jpg',
+                            'image/png'
+                        ]
+                    ])
+                ]
+            ])
         ;
     }
 

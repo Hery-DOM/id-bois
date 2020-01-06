@@ -74,6 +74,18 @@
                 </div>
             </div>
 
+            <div class="row align-items-center mt-5 mb-5">
+                <div class="col-4">
+                    {{ form_label(form.background,'Image de fond',{'label_attr':{'class':'admin-label'}}) }}
+                </div>
+                <div class="col-2">
+                    <img src="{{ asset('assets/img') }}/{{ user.background }}" alt="" class="img-fluid">
+                </div>
+                <div class="col-6">
+                    {{ form_widget(form.background,{'attr':{'class':'admin-input'}}) }}
+                </div>
+            </div>
+
             <div class="row align-items-center mb-5">
                 <div class="col-12">
                     <input type="submit" value="Modifier" type="button" class="btn btn-success">

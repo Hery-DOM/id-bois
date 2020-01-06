@@ -13,6 +13,7 @@ use App\Form\ProfileType;
 use App\Form\ProjectType;
 use App\Repository\ArticleRepository;
 use App\Repository\PictureRepository;
+use App\Repository\ProjectCategoryRepository;
 use App\Repository\TypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -104,7 +105,8 @@ class AdminController extends AbstractController
      * @Route("/admin/gallery/new", name="admin_gallery_new")
      * admin gallery page = create a new project
      */
-    public function adminGalleryCreate(TypeRepository $typeRepository, EntityManagerInterface $entityManager)
+    public function adminGalleryCreate(TypeRepository $typeRepository, EntityManagerInterface $entityManager,
+                                       ProjectCategoryRepository $projectCategoryRepository)
     {
         $project = new Article();
         $project->setUser($this->getUser());
@@ -112,8 +114,12 @@ class AdminController extends AbstractController
         //get type 3 instance
         $type = $typeRepository->find(3);
 
+        //get category 1 (default)
+        $category = $projectCategoryRepository->find(1);
+
         $project->setTitle('NOUVEAU PROJET');
         $project->setType($type);
+        $project->setProjectCategory($category);
 
         $entityManager->persist($project);
         $entityManager->flush();
@@ -301,10 +307,19 @@ class AdminController extends AbstractController
      * admin gallery page = remove a project
      */
     public function adminGalleryRemove(Request $request, ArticleRepository $articleRepository, EntityManagerInterface
-$entityManager)
+$entityManager, PictureRepository $pictureRepository)
     {
         $id = $request->query->get('id');
+
         $project = $articleRepository->find($id);
+        $pictures = $pictureRepository->findBy(['article' => $project]);
+
+        foreach ($pictures as $picture){
+            $entityManager->remove($picture);
+            //remove the picture in directory
+            unlink("assets/img//".$picture->getName());
+        }
+
         $entityManager->remove($project);
         $entityManager->flush();
         return $this->redirectToRoute('admin_gallery');
@@ -480,37 +495,71 @@ $entityManager)
 
                 /** @var UploadedFile $picture */
                 $picture = $form['picture']->getData();
+                $background = $form['background']->getData();
 
                 // this condition is needed because the 'brochure' field is not required
                 // so the picture file must be processed only when a file is uploaded
-                if ($picture) {
-                    $originalFilename = pathinfo($picture->getClientOriginalName(), PATHINFO_FILENAME);
-                    // this is needed to safely include the file name as part of the URL
-                    $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $picture->guessExtension();
+                if ($picture || $background) {
 
-                    // Move the file to the directory where brochures are stored
-                    try {
-                        $try_move = $picture->move(
-                            $this->getParameter('article_images'),
-                            $newFilename
-                        );
-                        if (!$try_move) {
-                            throw new Exception();
+                    if($picture){
+                        $originalFilename = pathinfo($picture->getClientOriginalName(), PATHINFO_FILENAME);
+                        // this is needed to safely include the file name as part of the URL
+                        $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                        $newFilename = $safeFilename . '-' . uniqid() . '.' . $picture->guessExtension();
+
+
+                        // Move the file to the directory where brochures are stored
+                        try {
+                            $try_move = $picture->move(
+                                $this->getParameter('article_images'),
+                                $newFilename
+                            );
+
+                            if (!$try_move) {
+                                throw new Exception();
+                            }
+
+                            if (!is_null($user->getPicture())) {
+                                unlink("assets/img//" . $user->getPicture());
+                            }
+
+
+                        } catch (Exception $e) {
+                            // ... handle exception if something happens during file upload
+                            $this->addFlash('info', 'Erreur lors du chargement de l\'image');
+                            return $this->redirectToRoute('admin_profile');
                         }
 
-                        if (!is_null($user->getPicture())) {
-                            unlink("assets/img//" . $user->getPicture());
-                        }
-                    } catch (Exception $e) {
-                        // ... handle exception if something happens during file upload
-                        $this->addFlash('info', 'Erreur lors du chargement de l\'image');
-                        return $this->redirectToRoute('admin_profile');
+                        // updates the 'picture name' property to store the file name
+                        // instead of its contents
+                        $user->setPicture($newFilename);
                     }
 
-                    // updates the 'picture name' property to store the file name
-                    // instead of its contents
-                    $user->setPicture($newFilename);
+                    if($background){
+
+                        $newFilenameBackground = "logo-background";
+                        try{
+                            if (!is_null($user->getBackground())) {
+                                unlink("assets/img/logo-background");
+                            }
+                            $try_move_background = $background->move(
+                                $this->getParameter('article_images'),
+                                $newFilenameBackground
+                            );
+
+                            if (!$try_move_background) {
+                                throw new Exception();
+                            }
+                        }catch (Exception $e2){
+                            // ... handle exception if something happens during file upload
+                            $this->addFlash('info', 'Erreur lors du chargement de l\'image de fond');
+                            return $this->redirectToRoute('admin_profile');
+                        }
+
+
+                        $user->setBackground($newFilenameBackground);
+                    }
+
 
 
                     $entityManager->persist($user);
@@ -518,7 +567,7 @@ $entityManager)
                     return $this->redirectToRoute('admin_profile');
                 }
             }else{
-                $this->addFlash('info','Erreur sur le formulaire (ex : taille de l\'image)');
+                $this->addFlash('info','Erreur sur le formulaire (ex : taille ou format d\'une image)');
                 return $this->redirectToRoute('admin_profile');
             }
         }
