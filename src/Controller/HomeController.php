@@ -56,7 +56,7 @@ class HomeController extends AbstractController
         $date = new \DateTime();
         $tomorrow = time($cookie_target_date)+10;
 
-        dump($cookie_target_date);
+        //dump($cookie_target_date);
         //dump(date($cookie_target_date->format('Y-m-d'),mktime(0,0,0,0,0,0)));
         $mydate = $cookie_target_date->diff(new \DateTime());
 
