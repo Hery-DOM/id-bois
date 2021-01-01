@@ -501,7 +501,7 @@ $entityManager, PictureRepository $pictureRepository)
                 // so the picture file must be processed only when a file is uploaded
                 if ($picture || $background) {
 
-                    if($picture){
+                    if ($picture) {
                         $originalFilename = pathinfo($picture->getClientOriginalName(), PATHINFO_FILENAME);
                         // this is needed to safely include the file name as part of the URL
                         $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
@@ -535,10 +535,10 @@ $entityManager, PictureRepository $pictureRepository)
                         $user->setPicture($newFilename);
                     }
 
-                    if($background){
+                    if ($background) {
 
                         $newFilenameBackground = "logo-background";
-                        try{
+                        try {
                             if (!is_null($user->getBackground())) {
                                 unlink("assets/img/logo-background");
                             }
@@ -550,7 +550,7 @@ $entityManager, PictureRepository $pictureRepository)
                             if (!$try_move_background) {
                                 throw new Exception();
                             }
-                        }catch (Exception $e2){
+                        } catch (Exception $e2) {
                             // ... handle exception if something happens during file upload
                             $this->addFlash('info', 'Erreur lors du chargement de l\'image de fond');
                             return $this->redirectToRoute('admin_profile');
@@ -560,12 +560,12 @@ $entityManager, PictureRepository $pictureRepository)
                         $user->setBackground($newFilenameBackground);
                     }
 
-
+                }
 
                     $entityManager->persist($user);
                     $entityManager->flush();
                     return $this->redirectToRoute('admin_profile');
-                }
+
             }else{
                 $this->addFlash('info','Erreur sur le formulaire (ex : taille ou format d\'une image)');
                 return $this->redirectToRoute('admin_profile');

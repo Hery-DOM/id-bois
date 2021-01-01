@@ -54,7 +54,7 @@ class HomeController extends AbstractController
 
         //get date
         $date = new \DateTime();
-        $tomorrow = time($cookie_target_date)+10;
+        //$tomorrow = time($cookie_target_date)+10;
 
         //dump($cookie_target_date);
         //dump(date($cookie_target_date->format('Y-m-d'),mktime(0,0,0,0,0,0)));
@@ -191,7 +191,7 @@ class HomeController extends AbstractController
             }
 
 
-            $to = 'id-bois@hotmail.fr';
+            $to = 'iandy.domenichini@hotmail.fr';
             $subject = 'Message du site web';
             $message = wordwrap($project, 70,"\r\n");
             $headers = 'Du formulaire du site id-bois.fr' . "\r\n" .

@@ -10,6 +10,8 @@
         <div class="home-text-box">
             <p class="home-description">{{ description[0].description | nl2br }}</p>
         </div>
-        <a href="{{ path('contact') }}"><button class="home-button">{{ button[0].description | nl2br  }}</button></a>
+        <div>
+            <a href="{{ path('contact') }}"><button class="home-button">{{ button[0].description | nl2br  }}</button></a>
+        </div>
     </div>
 {% endblock %}

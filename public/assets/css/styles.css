@@ -72,7 +72,10 @@ main {
   background-repeat: no-repeat;
   background-size: 43%;
   background-position: 58%;
-  position: relative; }
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 .profile {
   width: 80px;
@@ -94,7 +97,8 @@ main {
   top: 0;
   left: 100vw;
   display: none;
-  z-index: 20; }
+  z-index: 20;
+  overflow-y: scroll; }
 
 .profile-content-close {
   float: right;
@@ -164,6 +168,13 @@ main {
 .base-hidden-close:focus {
   color: red; }
 
+.base-networks:hover {
+  background-color: initial !important;
+  border: initial !important;
+  padding: 0 !important; }
+  .base-networks:hover img {
+    border: 1px solid white; }
+
 /**************** ADMIN ****************/
 .admin-h1 {
   text-align: center;
@@ -182,16 +193,16 @@ main {
   width: 70%;
   height: 60%;
   background-color: rgba(0, 0, 0, 0.8);
-  position: absolute;
+  /*position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%,-50%);*/
   border-radius: 0 30px 0 30px;
-  text-align: center; }
+  text-align: center;
+  padding: 25px 5px; }
 
 .home-text-box {
   width: 80%;
-  height: 60%;
   margin: 0 auto;
   text-align: center;
   display: flex;
@@ -209,7 +220,7 @@ main {
   background-color: white;
   color: black;
   width: 30%;
-  height: 15%; }
+  height: 40px; }
 
 .home-button:hover {
   background-color: dimgrey;
@@ -416,6 +427,10 @@ main {
   padding-bottom: 20px; }
   .legal-container h2 {
     margin-top: 40px; }
+  .legal-container a {
+    color: white; }
+  .legal-container a:hover {
+    text-decoration: underline; }
 
 /***** HOME PAGE *****/
 @media screen and (max-width: 1200px) {
@@ -424,7 +439,14 @@ main {
 
   .home-button {
     font-size: 1.2em;
-    width: 80%; } }
+    width: 80%; }
+
+  .home-box {
+    width: 90%;
+    height: 100%;
+    /*top: 0;
+    left: 50%;
+    transform: translateX(-50%);*/ } }
 /***** END - HOME PAGE *****/
 /***** GALLERY PAGE *****/
 @media screen and (min-width: 500px) and (max-width: 768px) {
@@ -460,6 +482,9 @@ main {
   .profile {
     width: 40px;
     height: 40px; }
+
+  .profile-img-box {
+    height: 100%; }
 
   .gallery-category-box {
     margin-top: 20px;

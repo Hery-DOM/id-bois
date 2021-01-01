@@ -2,6 +2,8 @@ body{
   overflow-x: hidden;
 }
 
+
+
 main{
   position: relative;
 }
@@ -73,6 +75,9 @@ main{
   background-size: 43%;
   background-position: 58%;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile{
@@ -98,6 +103,7 @@ main{
   left:100vw;
   display: none;
   z-index: 20;
+  overflow-y: scroll;
 }
 
 .profile-content-close{
@@ -191,6 +197,18 @@ main{
 
 .base-hidden-close:focus {
   color: red;
+}
+
+
+
+.base-networks:hover{
+  background-color: initial!important;
+  border: initial!important;
+  padding: 0!important;
+  img{
+    border:1px solid white;
+  }
+
 }
 
 
