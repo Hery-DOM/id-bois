@@ -35,6 +35,19 @@
                     <li><a href="{{ path('gallery_home') }}">Galerie</a></li>
                     <li><a href="{{ path('ecolo') }}">Écolo</a></li>
                     <li><a href="{{ path('contact') }}">Contact</a></li>
+                    <li><a href="https://www.etsy.com/fr/shop/IDbois91" target="_blank">Etsy</a></li>
+                    <li class="base-networks-link">
+                        <a href="https://www.instagram.com/id.bois/" class="base-networks"
+                           target="_blank">
+                            <img width="50px" height="auto" src="{{ asset('assets/icons/instagram.png') }}"
+                                 alt="https://www.instagram.com/id.bois/">
+                        </a>
+                        <a href="https://www.facebook.com/idbois91/" class="base-networks"
+                           target="_blank">
+                            <img width="50px" height="auto" src="{{ asset('assets/icons/facebook.png') }}"
+                                 alt="https://www.facebook.com/idbois91/">
+                        </a>
+                    </li>
                     <li><a href="{{ path('legal') }}">Mentions légales</a></li>
                 </ul>
             </nav>
@@ -51,6 +64,8 @@
                                 ?'active' }}">Écolo</a></li>
                             <li><a href="{{ path('contact') }}" class="{{ app.request.get('_route') == 'contact'
                                 ?'active' }}">Contact</a></li>
+                            <li><a href="https://www.etsy.com/fr/shop/IDbois91" target="_blank"
+                                >Etsy</a></li>
                             <li class="base-networks-link">
                                 <a href="https://www.instagram.com/id.bois/" class="base-networks"
                                 target="_blank">
